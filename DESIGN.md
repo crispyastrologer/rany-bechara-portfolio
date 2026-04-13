@@ -1,216 +1,213 @@
-# Rany Bechara CV Design System
+# Rany Bechara CV - SpaceX Inspired Design System
 
-Design system for personal portfolio/CV website. Professional, clean, with dark sidebar and warm orange accents.
+Design system for personal portfolio/CV website. Inspired by SpaceX: stark black and white, futuristic, minimal, high-tech aesthetic.
 
 ## 1. Visual Theme & Atmosphere
 
-**Mood:** Professional, creative, approachable yet polished
+**Mood:** Futuristic, bold, high-tech, professional
 
-**Philosophy:** Split-layout portfolio with dark sidebar for navigation/info and light main area for content. Warm accent color creates visual interest without overwhelming. Minimal decoration with purposeful accent elements.
+**Philosophy:** Full dark theme with stark black background and white text. Minimalist with purposeful use of electric blue accent. Clean lines, bold typography, and high contrast create a cutting-edge aerospace feel.
 
-**Density:** Medium density with generous whitespace. Content-focused without being cramped.
+**Density:** Low density with maximum whitespace. Content breathes. Every element is intentional.
 
 ## 2. Color Palette & Roles
 
 | Token | Hex | Usage |
 |-------|-----|-------|
-| `accent` | `#f5a623` | Highlights, dates, interactive states, links |
-| `accent-hover` | `#e09510` | Hover states on accent elements |
-| `sidebar-bg` | `#1a1a1a` | Left sidebar background |
-| `sidebar-text` | `#cccccc` | Body text on dark background |
-| `sidebar-text-muted` | `#888888` | Secondary text, labels on dark |
-| `sidebar-border` | `#333333` | Borders on dark background |
-| `card-bg` | `#252525` | Skill cards, tag backgrounds on dark |
-| `main-bg` | `#ffffff` | Main content area background |
-| `main-text` | `#222222` | Headings on light background |
-| `main-text-secondary` | `#555555` | Body text on light background |
-| `main-border` | `#e0e0e0` | Section dividers on light |
-| `page-bg` | `#e8e8e8` | Page background outside card |
-| `decorative-yellow` | `linear-gradient(135deg, #f5a623 0%, #f7b955 100%)` | Top-left decorative circle |
-| `decorative-grey` | `linear-gradient(135deg, #e0e0e0 0%, #c0c0c0 100%)` | Bottom-right decorative circle |
+| `accent` | `#005288` | Links, highlights, interactive states |
+| `accent-light` | `#0A4C78` | Hover states on accent |
+| `accent-glow` | `rgba(0, 82, 136, 0.3)` | Subtle glow effects |
+| `bg-primary` | `#000000` | Page background |
+| `bg-card` | `#0A0A0A` | Card/section backgrounds |
+| `bg-card-hover` | `#111111` | Card hover state |
+| `text-primary` | `#FFFFFF` | Primary text, headings |
+| `text-secondary` | `#999999` | Secondary text, labels |
+| `text-muted` | `#666666` | Muted text, placeholders |
+| `border` | `#222222` | Subtle borders |
+| `border-accent` | `#005288` | Accent borders on focus/hover |
 
 ## 3. Typography Rules
 
 **Font Stack:**
 ```
-'Segoe UI', 'Open Sans', Arial, sans-serif
+'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif
 ```
 
 **Type Scale:**
 
 | Element | Size | Weight | Color | Transform |
 |---------|------|--------|-------|-----------|
-| Name (h1) | 32px | 700 | `#222222` | none, letter-spacing 1px |
-| Title | 12px | 600 | `#f5a623` | uppercase, letter-spacing 2px |
-| Section Title | 9px | 700 | `#999999` | uppercase, letter-spacing 2px |
-| Job Title | 13px | 700 | `#222222` | none |
-| Company | 11px | 500 | `#666666` | none |
-| Body Text | 11-12px | 400 | `#555555` | none |
-| Dates | 11px | 700 | `#f5a623` | none |
-| Labels | 8-9px | 700 | `#888888` | uppercase |
+| Name (h1) | 48px | 800 | `#FFFFFF` | uppercase, letter-spacing 8px |
+| Title | 14px | 500 | `#005288` | uppercase, letter-spacing 4px |
+| Section Title | 10px | 600 | `#666666` | uppercase, letter-spacing 3px |
+| Job Title | 16px | 600 | `#FFFFFF` | none |
+| Company | 13px | 400 | `#999999` | none |
+| Body Text | 14px | 400 | `#CCCCCC` | none, line-height 1.7 |
+| Dates | 12px | 500 | `#005288` | none |
+| Labels | 10px | 500 | `#666666` | uppercase, letter-spacing 1px |
 
-**Line Height:** 1.5-1.6 for body text, 1.4 for tighter contexts
+**Line Height:** 1.7 for body text (generous spacing for readability)
 
 ## 4. Component Stylings
 
 ### Page Layout
 ```
-Max Width: 900px
-Grid: 250px sidebar + 1fr main
-Shadow: 0 4px 20px rgba(0,0,0,0.08)
-Border Radius: 0 (sharp corners)
+Max Width: 1000px
+Single column, centered
+Background: #000000
+No card shadow (flat design)
+Border Radius: 0 (sharp corners - SpaceX style)
 ```
 
-### Sidebar Section
+### Main Sections
 ```
-Background: #1a1a1a
-Padding: 32px 24px
-Margin Bottom: 24px
-Section Title:
-  - Font: 9px, uppercase, letter-spacing 2px
-  - Color: #888888
-  - Border-bottom: 1px solid #333333
-  - Margin-bottom: 12px
-  - Padding-bottom: 8px
+Background: #0A0A0A
+Border: 1px solid #222222
+Padding: 48px
+Margin-bottom: 24px
+Hover: background changes to #111111
 ```
 
-### Contact Item
+### Header Section
+```
+Background: transparent
+Padding: 64px 48px
+Text-align: center
+Name: 48px, uppercase, letter-spacing 8px
+Title: 14px, uppercase, letter-spacing 4px, accent color
+```
+
+### Section Title
+```
+Font: 10px, uppercase, letter-spacing 3px
+Color: #666666
+Margin-bottom: 24px
+Padding-bottom: 12px
+Border-bottom: 1px solid #222222
+```
+
+### Contact Row
 ```
 Display: flex
-Gap: 10px
-Icon Size: 14x14px
-Icon Color: #f5a623
-Text Color: #cccccc
-Link Color: #cccccc (hover: #f5a623)
-Margin-bottom: 10px
+Justify-content: center
+Gap: 32px
+Flex-wrap: wrap
+Icon Color: #005288
+Text Color: #999999
+Link Color: #FFFFFF (hover: #005288)
 ```
 
 ### Skill Card
 ```
-Background: #252525
-Border: 1px solid #333333
-Padding: 8px 4px
-Icon Size: 22x22px
-Text Size: 8px
+Background: #0A0A0A
+Border: 1px solid #222222
+Padding: 16px 12px
+Icon Size: 24x24px
+Text Size: 10px
 Hover:
-  - Border-color: #f5a623
-  - Transform: translateY(-2px)
+  - Border-color: #005288
+  - Background: #111111
   - cursor: pointer
 ```
 
 ### Interest Tag
 ```
-Background: #252525
+Background: transparent
 Border: 1px solid #333333
-Padding: 4px 10px
-Font Size: 9px
+Padding: 8px 16px
+Font Size: 11px
 Hover:
-  - Background: #f5a623
-  - Color: white
-  - Border-color: #f5a623
+  - Border-color: #005288
+  - Color: #005288
 ```
 
-### Job Card
+### Job Entry
 ```
-Border-left: 2px solid #dddddd
-Padding-left: 14px
-Margin-bottom: 18px
+Border-left: 3px solid #222222
+Padding-left: 20px
+Margin-bottom: 32px
 Hover:
-  - Border-left-color: #f5a623
-  - Padding-left: 16px
+  - Border-left-color: #005288
 ```
 
-### Decorative Circles
+### Education Entry
 ```
-Top-Left (Yellow):
-  Position: fixed, top -60px, left -60px
-  Size: 200x200px
-  Background: linear-gradient(135deg, #f5a623 0%, #f7b955 100%)
-  Opacity: 0.15
-
-Bottom-Right (Grey):
-  Position: fixed, bottom -100px, right -100px
-  Size: 280x280px
-  Background: linear-gradient(135deg, #e0e0e0 0%, #c0c0c0 100%)
-  Opacity: 0.3
+Margin-bottom: 24px
+Last-child: margin-bottom 0
 ```
 
 ## 5. Layout Principles
 
 **Grid System:**
-- Two-column layout: 250px fixed sidebar + flexible main
-- Content max-width: 900px
-- Page padding: 40px
-- Section spacing: 24-28px
+- Single centered column (no sidebar)
+- Max-width: 1000px
+- Generous padding: 48px
+- Section spacing: 48px between major sections
 
 **Spacing Scale:**
 ```
-xs: 4px
-sm: 8px
-md: 12px
-lg: 16px
-xl: 24px
-xxl: 32px
+xs: 8px
+sm: 12px
+md: 16px
+lg: 24px
+xl: 32px
+xxl: 48px
+xxxl: 64px
 ```
 
-**Section Order (Sidebar):**
-1. Contact
-2. Education
-3. Software Skills
-4. Languages
-5. Interests
-
-**Section Order (Main):**
-1. Header (Name + Title)
-2. Biography
-3. Work Experience
+**Section Order:**
+1. Header (Name + Title + Contact)
+2. About / Bio
+3. Experience
+4. Skills
+5. Education
+6. Interests
 
 ## 6. Depth & Elevation
 
-**Shadows:**
-```
-Page Card: 0 4px 20px rgba(0,0,0,0.08)
-```
+**Shadows:** None (flat SpaceX aesthetic)
 
-**Border Radius:** None (sharp corners throughout)
+**Border Radius:** 0 (sharp corners throughout)
 
-**Opacity Levels:**
+**Glow Effects:**
 ```
-Decorative circles: 0.15 - 0.3
-Text on dark: 0.5 - 1.0
+Accent glow on focus: box-shadow: 0 0 20px rgba(0, 82, 136, 0.3)
 ```
 
 ## 7. Do's and Don'ts
 
 ### Do
-- Use `#f5a623` exclusively for dates, accents, interactive highlights
-- Keep sidebar text light (#cccccc) against dark background
-- Maintain consistent 2px left border on job cards
-- Use gradient fills on decorative circles (not solid colors)
-- Keep hover transitions smooth (0.2s ease)
+- Use pure black (#000000) as background
+- Use pure white (#FFFFFF) for primary text
+- Use electric blue (#005288) for accents and links
+- Keep everything flat with subtle borders
+- Use generous whitespace
+- Use bold, uppercase typography for name/headings
+- Add subtle blue glow on interactive focus
 
 ### Don't
-- Use blue or other accent colors
-- Apply light text on light sidebar background
-- Use rounded corners (all sharp)
-- Add unnecessary decorative elements beyond the two circles
-- Use more than 3 accent colors
-- Apply bold weight to body text
+- Use multiple accent colors - only blue
+- Use rounded corners (sharp edges only)
+- Use shadows or depth effects
+- Use warm colors (orange, yellow, red)
+- Use light backgrounds
+- Add decorative elements or gradients
+- Crowd content - keep it minimal
 
 ## 8. Responsive Behavior
 
 **Breakpoints:**
 ```
-Mobile: < 768px
-  - Stack sidebar above main content
-  - Reduce page padding to 20px
-  - Sidebar becomes full-width with border-bottom
+Mobile: < 640px
+  - Reduce padding to 24px
+  - Name size: 32px
+  - Contact gap: 16px
 
-Tablet: 768px - 1024px
-  - Use current layout with reduced margins
+Tablet: 640px - 1024px
+  - Standard layout with reduced margins
 
 Desktop: > 1024px
-  - Full two-column layout
+  - Full centered layout
 ```
 
 **Touch Targets:** Minimum 44x44px for interactive elements
@@ -219,16 +216,17 @@ Desktop: > 1024px
 
 **Quick Color Reference:**
 ```
-Primary Accent: #f5a623 (orange)
-Dark Background: #1a1a1a
-Light Background: #ffffff
-Text on Dark: #cccccc
-Text on Light: #555555
+Primary Background: #000000 (black)
+Card Background: #0A0A0A (near black)
+Primary Text: #FFFFFF (white)
+Accent: #005288 (SpaceX blue)
+Secondary Text: #999999 (grey)
+Border: #222222 (subtle)
 ```
 
 **Sample Prompts:**
-- "Update the CV design following DESIGN.md - make dates more prominent"
-- "Add a new skill to the sidebar following the existing skill card style"
-- "Increase spacing between job cards to match DESIGN.md specifications"
-- "Change the accent color to a warmer tone while keeping the same saturation"
-- "Add hover effects to the interest tags matching DESIGN.md"
+- "Update the CV design following DESIGN.md - make it more minimal"
+- "Add a new skill following the SpaceX-inspired skill card style"
+- "Reduce spacing between sections to match DESIGN.md"
+- "Change accent color to a different blue tone"
+- "Add hover glow effects to interactive elements matching DESIGN.md"
