@@ -1,30 +1,64 @@
 # Rany Bechara CV - SpaceX Inspired Design System
 
-Design system for personal portfolio/CV website. Inspired by SpaceX: stark black and white, futuristic, minimal, high-tech aesthetic.
+Design system for personal portfolio/CV website. Inspired by SpaceX: stark black and white, futuristic, minimal, high-tech aesthetic with light/dark mode support.
 
 ## 1. Visual Theme & Atmosphere
 
 **Mood:** Futuristic, bold, high-tech, professional
 
-**Philosophy:** Full dark theme with stark black background and white text. Minimalist with purposeful use of electric blue accent. Clean lines, bold typography, and high contrast create a cutting-edge aerospace feel.
+**Philosophy:** Full dark theme by default with stark black background and white text. Optional light mode for accessibility. Minimalist with purposeful use of electric blue accent. Clean lines, bold typography, and high contrast create a cutting-edge aerospace feel.
 
 **Density:** Low density with maximum whitespace. Content breathes. Every element is intentional.
 
 ## 2. Color Palette & Roles
 
-| Token | Hex | Usage |
-|-------|-----|-------|
-| `accent` | `#005288` | Links, highlights, interactive states |
-| `accent-light` | `#0A4C78` | Hover states on accent |
-| `accent-glow` | `rgba(0, 82, 136, 0.3)` | Subtle glow effects |
-| `bg-primary` | `#000000` | Page background |
-| `bg-card` | `#0A0A0A` | Card/section backgrounds |
-| `bg-card-hover` | `#111111` | Card hover state |
-| `text-primary` | `#FFFFFF` | Primary text, headings |
-| `text-secondary` | `#999999` | Secondary text, labels |
-| `text-muted` | `#666666` | Muted text, placeholders |
-| `border` | `#222222` | Subtle borders |
-| `border-accent` | `#005288` | Accent borders on focus/hover |
+### CSS Variables Pattern
+```css
+:root {
+    /* Dark Mode (Default) */
+    --bg-primary: #000000;
+    --bg-card: #0A0A0A;
+    --bg-card-hover: #111111;
+    --text-primary: #FFFFFF;
+    --text-secondary: #999999;
+    --text-muted: #666666;
+    --accent: #005288;
+    --accent-light: #0A4C78;
+    --border: #222222;
+    --border-accent: #333333;
+    --skill-card-bg: #0A0A0A;
+    --skill-icon-fill: #bbbbbb;
+}
+
+[data-theme="light"] {
+    --bg-primary: #ffffff;
+    --bg-card: #f8f9fa;
+    --bg-card-hover: #f0f1f3;
+    --text-primary: #000000;
+    --text-secondary: #555555;
+    --text-muted: #888888;
+    --accent: #005288;
+    --accent-light: #003d66;
+    --border: #e0e0e0;
+    --border-accent: #d0d0d0;
+    --skill-card-bg: #f8f9fa;
+    --skill-icon-fill: #555555;
+}
+```
+
+### Color Token Reference
+
+| Token | Dark Mode | Light Mode | Usage |
+|-------|-----------|-----------|-------|
+| `bg-primary` | `#000000` | `#ffffff` | Page background |
+| `bg-card` | `#0A0A0A` | `#f8f9fa` | Card/section backgrounds |
+| `bg-card-hover` | `#111111` | `#f0f1f3` | Card hover state |
+| `text-primary` | `#FFFFFF` | `#000000` | Primary text, headings |
+| `text-secondary` | `#999999` | `#555555` | Secondary text |
+| `text-muted` | `#666666` | `#888888` | Muted text, labels |
+| `accent` | `#005288` | `#005288` | Links, highlights, interactive |
+| `border` | `#222222` | `#e0e0e0` | Subtle borders |
+| `border-accent` | `#333333` | `#d0d0d0` | Accent borders |
 
 ## 3. Typography Rules
 
@@ -37,14 +71,14 @@ Design system for personal portfolio/CV website. Inspired by SpaceX: stark black
 
 | Element | Size | Weight | Color | Transform |
 |---------|------|--------|-------|-----------|
-| Name (h1) | 48px | 800 | `#FFFFFF` | uppercase, letter-spacing 8px |
-| Title | 14px | 500 | `#005288` | uppercase, letter-spacing 4px |
-| Section Title | 10px | 600 | `#666666` | uppercase, letter-spacing 3px |
-| Job Title | 16px | 600 | `#FFFFFF` | none |
-| Company | 13px | 400 | `#999999` | none |
-| Body Text | 14px | 400 | `#CCCCCC` | none, line-height 1.7 |
-| Dates | 12px | 500 | `#005288` | none |
-| Labels | 10px | 500 | `#666666` | uppercase, letter-spacing 1px |
+| Name (h1) | 48px | 800 | `var(--text-primary)` | uppercase, letter-spacing 8px |
+| Title | 14px | 500 | `var(--accent)` | uppercase, letter-spacing 4px |
+| Section Title | 10px | 600 | `var(--text-muted)` | uppercase, letter-spacing 3px |
+| Job Title | 16px | 600 | `var(--text-primary)` | none |
+| Company | 13px | 400 | `var(--text-secondary)` | none |
+| Body Text | 14px | 400 | `var(--text-secondary)` | none, line-height 1.7 |
+| Dates | 12px | 500 | `var(--accent)` | none |
+| Labels | 10px | 500 | `var(--text-muted)` | uppercase, letter-spacing 1px |
 
 **Line Height:** 1.7 for body text (generous spacing for readability)
 
@@ -54,36 +88,47 @@ Design system for personal portfolio/CV website. Inspired by SpaceX: stark black
 ```
 Max Width: 1000px
 Single column, centered
-Background: #000000
+Background: var(--bg-primary)
 No card shadow (flat design)
 Border Radius: 0 (sharp corners - SpaceX style)
 ```
 
+### Theme Toggle Button
+```
+Position: fixed, top 24px, right 24px
+Background: var(--bg-card)
+Border: 1px solid var(--border)
+Padding: 8px 16px
+Icon: 18x18px, fill var(--text-secondary)
+Text: 11px, uppercase, letter-spacing 1px
+Hover: border-color var(--accent), icon fill var(--accent)
+Responsive: Hide text on mobile (< 480px)
+```
+
 ### Main Sections
 ```
-Background: #0A0A0A
-Border: 1px solid #222222
-Padding: 48px
-Margin-bottom: 24px
-Hover: background changes to #111111
+Background: transparent
+Border-bottom: 1px solid var(--border)
+Padding: 48px 0
 ```
 
 ### Header Section
 ```
 Background: transparent
-Padding: 64px 48px
+Padding: 80px 0 64px
 Text-align: center
-Name: 48px, uppercase, letter-spacing 8px
-Title: 14px, uppercase, letter-spacing 4px, accent color
+Border-bottom: 1px solid var(--border)
+Name: 48px, uppercase, letter-spacing 8px, var(--text-primary)
+Title: 14px, uppercase, letter-spacing 4px, var(--accent)
 ```
 
 ### Section Title
 ```
 Font: 10px, uppercase, letter-spacing 3px
-Color: #666666
+Color: var(--text-muted)
 Margin-bottom: 24px
 Padding-bottom: 12px
-Border-bottom: 1px solid #222222
+Border-bottom: 1px solid var(--border)
 ```
 
 ### Contact Row
@@ -92,48 +137,43 @@ Display: flex
 Justify-content: center
 Gap: 32px
 Flex-wrap: wrap
-Icon Color: #005288
-Text Color: #999999
-Link Color: #FFFFFF (hover: #005288)
+Icon Color: var(--accent)
+Text Color: var(--text-secondary)
+Link Color: var(--text-primary) (hover: var(--accent))
 ```
 
 ### Skill Card
 ```
-Background: #0A0A0A
-Border: 1px solid #222222
-Padding: 16px 12px
-Icon Size: 24x24px
-Text Size: 10px
+Background: var(--skill-card-bg)
+Border: 1px solid var(--border)
+Padding: 20px 12px
+Icon Size: 28x28px
+Icon Fill: var(--skill-icon-fill)
+Text Size: 11px
 Hover:
-  - Border-color: #005288
-  - Background: #111111
-  - cursor: pointer
+  - Border-color: var(--accent)
+  - Background: var(--bg-card-hover)
 ```
 
 ### Interest Tag
 ```
 Background: transparent
-Border: 1px solid #333333
-Padding: 8px 16px
-Font Size: 11px
+Border: 1px solid var(--border-accent)
+Padding: 10px 20px
+Font Size: 12px
+Color: var(--text-secondary)
 Hover:
-  - Border-color: #005288
-  - Color: #005288
+  - Border-color: var(--accent)
+  - Color: var(--accent)
 ```
 
 ### Job Entry
 ```
-Border-left: 3px solid #222222
-Padding-left: 20px
-Margin-bottom: 32px
+Border-left: 3px solid var(--border)
+Padding-left: 24px
+Margin-bottom: 40px
 Hover:
-  - Border-left-color: #005288
-```
-
-### Education Entry
-```
-Margin-bottom: 24px
-Last-child: margin-bottom 0
+  - Border-left-color: var(--accent)
 ```
 
 ## 5. Layout Principles
@@ -141,7 +181,7 @@ Last-child: margin-bottom 0
 **Grid System:**
 - Single centered column (no sidebar)
 - Max-width: 1000px
-- Generous padding: 48px
+- Generous padding: 48px (container) or 0 with section spacing
 - Section spacing: 48px between major sections
 
 **Spacing Scale:**
@@ -161,7 +201,8 @@ xxxl: 64px
 3. Experience
 4. Skills
 5. Education
-6. Interests
+6. Languages
+7. Interests
 
 ## 6. Depth & Elevation
 
@@ -169,30 +210,29 @@ xxxl: 64px
 
 **Border Radius:** 0 (sharp corners throughout)
 
-**Glow Effects:**
-```
-Accent glow on focus: box-shadow: 0 0 20px rgba(0, 82, 136, 0.3)
-```
+**Transitions:** 0.3s ease for theme changes, 0.2s ease for hover states
 
 ## 7. Do's and Don'ts
 
 ### Do
-- Use pure black (#000000) as background
-- Use pure white (#FFFFFF) for primary text
-- Use electric blue (#005288) for accents and links
+- Use pure black (#000000) as default dark background
+- Use CSS variables for all colors to support theme switching
+- Use electric blue (#005288) for accents and links in both themes
 - Keep everything flat with subtle borders
 - Use generous whitespace
 - Use bold, uppercase typography for name/headings
-- Add subtle blue glow on interactive focus
+- Add theme toggle button in top-right corner
+- Respect system theme preference on first load
+- Persist theme choice in localStorage
 
 ### Don't
 - Use multiple accent colors - only blue
 - Use rounded corners (sharp edges only)
 - Use shadows or depth effects
 - Use warm colors (orange, yellow, red)
-- Use light backgrounds
 - Add decorative elements or gradients
 - Crowd content - keep it minimal
+- Hardcode colors instead of using CSS variables
 
 ## 8. Responsive Behavior
 
@@ -200,8 +240,9 @@ Accent glow on focus: box-shadow: 0 0 20px rgba(0, 82, 136, 0.3)
 ```
 Mobile: < 640px
   - Reduce padding to 24px
-  - Name size: 32px
+  - Name size: 32px, letter-spacing 4px
   - Contact gap: 16px
+  - Theme toggle: hide text, show icon only
 
 Tablet: 640px - 1024px
   - Standard layout with reduced margins
@@ -216,17 +257,31 @@ Desktop: > 1024px
 
 **Quick Color Reference:**
 ```
-Primary Background: #000000 (black)
-Card Background: #0A0A0A (near black)
-Primary Text: #FFFFFF (white)
-Accent: #005288 (SpaceX blue)
-Secondary Text: #999999 (grey)
-Border: #222222 (subtle)
+Primary Background (dark): #000000
+Primary Background (light): #ffffff
+Card Background (dark): #0A0A0A
+Card Background (light): #f8f9fa
+Primary Text (dark): #FFFFFF
+Primary Text (light): #000000
+Accent: #005288 (same in both modes)
+Secondary Text (dark): #999999
+Secondary Text (light): #555555
+Border (dark): #222222
+Border (light): #e0e0e0
+```
+
+**Theme Toggle Implementation:**
+```
+- Fixed position: top 24px, right 24px
+- Use data-theme attribute on body
+- Save preference in localStorage
+- Check system preference (prefers-color-scheme) on first load
+- Smooth transitions (0.3s) for theme changes
 ```
 
 **Sample Prompts:**
-- "Update the CV design following DESIGN.md - make it more minimal"
-- "Add a new skill following the SpaceX-inspired skill card style"
-- "Reduce spacing between sections to match DESIGN.md"
-- "Change accent color to a different blue tone"
-- "Add hover glow effects to interactive elements matching DESIGN.md"
+- "Add a theme toggle following DESIGN.md specifications"
+- "Update colors to use CSS variables for theme switching"
+- "Add light mode styles that complement the dark mode"
+- "Implement localStorage persistence for theme preference"
+- "Add system preference detection for initial theme"
