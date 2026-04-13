@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RANY BECHARA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-size: 16px;
+            line-height: 1.5;
+            color: #4b4b4b;
+            background: #ffffff;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* HEADER */
+        .header {
+            background: #000000;
+            padding: 80px 48px;
+            text-align: center;
+        }
+
+        .name {
+            font-size: 52px;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: -0.02em;
+            line-height: 1.23;
+            margin-bottom: 16px;
+        }
+
+        .title {
+            font-size: 16px;
+            font-weight: 500;
+            color: #afafaf;
+            margin-bottom: 32px;
+        }
+
+        .contact-row {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .contact-pill {
+            background: #ffffff;
+            color: #000000;
+            padding: 10px 20px;
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            transition: background 0.2s ease;
+        }
+
+        .contact-pill:hover {
+            background: #e2e2e2;
+        }
+
+        .contact-pill svg {
+            width: 16px;
+            height: 16px;
+            fill: #000000;
+        }
+
+        /* SECTIONS */
+        .section {
+            padding: 64px 48px;
+            border-bottom: 1px solid #e2e2e2;
+        }
+
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        .section-title {
+            font-size: 12px;
+            font-weight: 700;
+            color: #000000;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 32px;
+        }
+
+        /* ABOUT */
+        .about-text {
+            font-size: 16px;
+            color: #4b4b4b;
+            line-height: 1.65;
+            max-width: 720px;
+        }
+
+        .about-text + .about-text {
+            margin-top: 16px;
+        }
+
+        /* EXPERIENCE */
+        .job-card {
+            background: #ffffff;
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 16px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+            transition: box-shadow 0.2s ease, transform 0.2s ease;
+        }
+
+        .job-card:last-child {
+            margin-bottom: 0;
+        }
+
+        .job-card:hover {
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.16);
+            transform: translateY(-2px);
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .job-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #000000;
+            line-height: 1.4;
+        }
+
+        .job-dates {
+            font-size: 14px;
+            font-weight: 500;
+            color: #afafaf;
+            white-space: nowrap;
+        }
+
+        .job-company {
+            font-size: 14px;
+            font-weight: 500;
+            color: #4b4b4b;
+            margin-bottom: 12px;
+        }
+
+        .job-description {
+            font-size: 14px;
+            color: #4b4b4b;
+            line-height: 1.65;
+        }
+
+        .job-description strong {
+            color: #000000;
+            font-weight: 600;
+        }
+
+        /* SKILLS */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 12px;
+        }
+
+        .skill-chip {
+            background: #efefef;
+            color: #000000;
+            padding: 14px 16px;
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: 500;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+            cursor: default;
+        }
+
+        .skill-chip:hover {
+            background: #000000;
+            color: #ffffff;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.16);
+        }
+
+        .skill-chip svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .skill-chip svg path,
+        .skill-chip svg rect,
+        .skill-chip svg circle,
+        .skill-chip svg polygon {
+            fill: currentColor;
+        }
+
+        /* EDUCATION */
+        .education-card {
+            background: #ffffff;
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 16px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+        }
+
+        .education-card:last-child {
+            margin-bottom: 0;
+        }
+
+        .education-degree {
+            font-size: 16px;
+            font-weight: 700;
+            color: #000000;
+            margin-bottom: 4px;
+        }
+
+        .education-school {
+            font-size: 14px;
+            color: #4b4b4b;
+            margin-bottom: 8px;
+        }
+
+        .education-year {
+            font-size: 14px;
+            font-weight: 500;
+            color: #afafaf;
+        }
+
+        .education-desc {
+            font-size: 14px;
+            color: #afafaf;
+            margin-top: 8px;
+        }
+
+        /* LANGUAGES */
+        .languages-row {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .language-chip {
+            background: #000000;
+            color: #ffffff;
+            padding: 14px 24px;
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .language-chip span {
+            color: #afafaf;
+            font-weight: 400;
+        }
+
+        /* INTERESTS */
+        .interests-row {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .interest-chip {
+            background: #efefef;
+            color: #4b4b4b;
+            padding: 12px 20px;
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            cursor: default;
+        }
+
+        .interest-chip:hover {
+            background: #e2e2e2;
+            color: #000000;
+        }
+
+        /* FOOTER */
+        .footer {
+            background: #000000;
+            padding: 48px;
+            text-align: center;
+        }
+
+        .footer-text {
+            font-size: 12px;
+            font-weight: 500;
+            color: #afafaf;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .header {
+                padding: 48px 24px;
+            }
+            .name {
+                font-size: 36px;
+            }
+            .contact-row {
+                gap: 8px;
+            }
+            .contact-pill {
+                padding: 8px 16px;
+                font-size: 13px;
+            }
+            .section {
+                padding: 40px 24px;
+            }
+            .job-card,
+            .education-card {
+                padding: 20px;
+            }
+            .skills-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 8px;
+            }
+            .skill-chip {
+                padding: 12px 14px;
+                font-size: 13px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .name {
+                font-size: 28px;
+            }
+            .job-header {
+                flex-direction: column;
+            }
+        }
+
+        /* PRINT */
+        @media print {
+            body {
+                background: white;
+            }
+            .header,
+            .footer {
+                background: white;
+                color: black;
+            }
+            .name,
+            .job-title,
+            .education-degree {
+                color: black;
+            }
+            .title,
+            .job-dates,
+            .language-chip {
+                color: #4b4b4b;
+                background: #f5f5f5;
+            }
+            .contact-pill {
+                background: #f5f5f5;
+                border: 1px solid #e0e0e0;
+            }
+            .job-card,
+            .education-card {
+                box-shadow: none;
+                border: 1px solid #e0e0e0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="header">
+        <h1 class="name">Rany Bechara</h1>
+        <p class="title">CG Artist</p>
+        <div class="contact-row">
+            <a href="tel:+447960505341" class="contact-pill">
+                <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                +44 7960505341
+            </a>
+            <a href="mailto:rany.bechara@gmail.com" class="contact-pill">
+                <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                rany.bechara@gmail.com
+            </a>
+            <span class="contact-pill">
+                <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                London, UK
+            </span>
+            <a href="http://www.rany.co/" class="contact-pill">
+                <svg viewBox="0 0 24 24"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg>
+                rany.co
+            </a>
+        </div>
+    </header>
+
+    <!-- ABOUT -->
+    <section class="section">
+        <h2 class="section-title">About</h2>
+        <p class="about-text">I'm a 3D generalist with over a decade of experience in computer graphics, spanning film, motion graphics, and digital media. My passion for digital content creation drives me to embrace cutting-edge tools and technology.</p>
+        <p class="about-text">I've contributed to diverse projects in the Middle East and the UK, including film, ads, music videos, holograms, VR applications, and research. My blend of artistic creativity and technical expertise brings innovation and adaptability to tech-driven environments.</p>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section class="section">
+        <h2 class="section-title">Experience</h2>
+
+        <div class="job-card">
+            <div class="job-header">
+                <h3 class="job-title">Creature Technical Director</h3>
+                <span class="job-dates">Jan 2024 – Present</span>
+            </div>
+            <p class="job-company">Industrial Light & Magic (ILM)</p>
+            <p class="job-description">Using Houdini and proprietary tools, create high quality simulations of muscles, skin, fur, and cloth. Collaborate with rigging, animation, and lighting teams to ensure seamless integration. Develop and share tools to streamline workflows and improve efficiency.</p>
+        </div>
+
+        <div class="job-card">
+            <div class="job-header">
+                <h3 class="job-title">Tech Anim Key Artist</h3>
+                <span class="job-dates">Nov 2021 – Dec 2023</span>
+            </div>
+            <p class="job-company">Moving Picture Company (MPC)</p>
+            <p class="job-description">Using Houdini and in-house tools, I have been part of multiple projects working on creature simulations for fur, feathers, skin and fat. Projects include <strong>Prehistoric Planet</strong>, <strong>Sonic</strong>, <strong>Percy Jackson</strong>, <strong>Halo</strong>, and <strong>Disenchanted</strong>.</p>
+        </div>
+
+        <div class="job-card">
+            <div class="job-header">
+                <h3 class="job-title">Research Assistant</h3>
+                <span class="job-dates">Oct 2020 – Oct 2021</span>
+            </div>
+            <p class="job-company">University Of Dundee</p>
+            <p class="job-description">Used state-of-the-art hardware to scan and reconstruct human faces and recreate textures, hair systems and eye rigs using Blender. Scanned and modelled facial adornments such as jewellery and spectacles.</p>
+        </div>
+
+        <div class="job-card">
+            <div class="job-header">
+                <h3 class="job-title">Digital Design Teacher</h3>
+                <span class="job-dates">Aug 2019 – Aug 2020</span>
+            </div>
+            <p class="job-company">Wellspring Learning Community</p>
+            <p class="job-description">Created curriculum using the MYP program, including coding skills, Blender 3D and AR animations.</p>
+        </div>
+
+        <div class="job-card">
+            <div class="job-header">
+                <h3 class="job-title">Digital Designer / Team Leader</h3>
+                <span class="job-dates">Jun 2015 – Aug 2017</span>
+            </div>
+            <p class="job-company">Cre8mania</p>
+            <p class="job-description">Team leader and lead in developing the organisation's 3D department. Content creation in hologram animation, virtual reality, mobile gaming and 3D visualisation.</p>
+        </div>
+
+        <div class="job-card">
+            <div class="job-header">
+                <h3 class="job-title">3D Generalist</h3>
+                <span class="job-dates">Feb 2013 – Apr 2013</span>
+            </div>
+            <p class="job-company">Spatial Thinking</p>
+            <p class="job-description">Created 3D graphics, integrating them with EON Reality (VR software) to develop a stereoscopic interactive program. Trained 12 employees at EON Reality in the UK on 3ds Max.</p>
+        </div>
+
+        <div class="job-card">
+            <div class="job-header">
+                <h3 class="job-title">Digital Artist</h3>
+                <span class="job-dates">Nov 2012 – May 2013</span>
+            </div>
+            <p class="job-company">Feer Mcqueen</p>
+            <p class="job-description">Part of a team working with graphic designers. Responsibilities included creating website animations, 3D visualisations for marketing products, corporate videos and motion graphics.</p>
+        </div>
+
+        <div class="job-card">
+            <div class="job-header">
+                <h3 class="job-title">Compositor</h3>
+                <span class="job-dates">Jan 2011 – Oct 2012</span>
+            </div>
+            <p class="job-company">W&P Productions</p>
+            <p class="job-description">Worked on post-production for music videos. This includes green screens, compositing, title animation and colour grading.</p>
+        </div>
+
+        <div class="job-card">
+            <div class="job-header">
+                <h3 class="job-title">Animator</h3>
+                <span class="job-dates">Jun 2010 – Nov 2010</span>
+            </div>
+            <p class="job-company">Global Aim</p>
+            <p class="job-description">Created animations and worked on compositing and post-production for client websites and music video clips.</p>
+        </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section class="section">
+        <h2 class="section-title">Software</h2>
+        <div class="skills-grid">
+            <div class="skill-chip">
+                <svg viewBox="0 0 24 24"><path d="M0 19.635V24h3.824A8.662 8.662 0 0 1 0 19.635zm16.042-4.555c0-4.037-3.253-7.92-8.111-8.089C4.483 6.873 1.801 8.136 0 10.005v4.209c1.224-3.549 4.595-5.158 7.419-5.128 3.531.041 6.251 2.703 6.275 5.72 0 2.878-1.183 4.992-4.436 5.516-1.774.296-4.548-.754-4.436-3.434.065-1.381 1.138-2.162 2.366-2.106-1.207 1.618.39 2.801 1.52 2.561a2.51 2.51 0 0 0 1.966-2.502c0-1.017-.958-2.662-3.333-2.6-2.936.068-4.785 2.183-4.85 4.797-.071 3.28 3.007 5.457 6.174 5.483 4.633.059 7.395-2.984 7.377-7.441zM0 0v6.906a12.855 12.855 0 0 1 7.931-2.609c6.801 0 11.134 4.762 11.131 10.765 0 4.17-1.946 7.308-4.995 8.938H24V0H0z"/></svg>
+                Houdini
+            </div>
+            <div class="skill-chip">
+                <svg viewBox="0 0 24 24"><path d="M12.51 13.214c.046-.8.438-1.506 1.03-2.006a3.424 3.424 0 0 1 2.212-.79c.85 0 1.631.3 2.211.79.592.5.983 1.206 1.028 2.005.045.823-.285 1.586-.865 2.153a3.389 3.389 0 0 1-2.374.938 3.393 3.393 0 0 1-2.376-.938c-.58-.567-.91-1.33-.865-2.152M7.35 14.831c.006.314.106.922.256 1.398a7.372 7.372 0 0 0 1.593 2.757 8.227 8.227 0 0 0 2.787 2.001 8.947 8.947 0 0 0 3.66.76 8.964 8.964 0 0 0 3.657-.772 8.285 8.285 0 0 0 2.785-2.01 7.428 7.428 0 0 0 1.592-2.762 6.964 6.964 0 0 0 .25-3.074 7.123 7.123 0 0 0-1.016-2.779 7.764 7.764 0 0 0-1.852-2.043h.002L13.566 2.55l-.02-.015c-.492-.378-1.319-.376-1.86.002-.547.382-.609 1.015-.123 1.415l-.001.001 3.126 2.543-9.53.01h-.013c-.788.001-1.545.518-1.695 1.172-.154.665.38 1.217 1.2 1.22V8.9l4.83-.01-8.62 6.617-.034.025c-.813.622-1.075 1.658-.563 2.313.52.667 1.625.668 2.447.004L7.414 14s-.069.52-.063.831zm12.09 1.741c-.97.988-2.326 1.548-3.795 1.55-1.47.004-2.827-.552-3.797-1.538a4.51 4.51 0 0 1-1.036-1.622 4.282 4.282 0 0 1 .282-3.519 4.702 4.702 0 0 1 1.153-1.371c.942-.768 2.141-1.183 3.396-1.185 1.256-.002 2.455.41 3.398 1.175.48.391.87.854 1.152 1.367a4.28 4.28 0 0 1 .522 1.706 4.236 4.236 0 0 1-.239 1.811 4.54 4.54 0 0 1-1.035 1.626"/></svg>
+                Blender
+            </div>
+            <div class="skill-chip">
+                <svg viewBox="0 0 24 24"><path d="M12.293.004c6.625.162 11.865 5.664 11.703 12.29-.162 6.625-5.664 11.865-12.29 11.703C5.081 23.835-.159 18.333.003 11.707l.001-.025C.18 5.066 5.678-.158 12.293.004zm0 1.238c-5.941-.164-10.89 4.52-11.054 10.461s4.52 10.89 10.461 11.054c5.941.164 10.89-4.52 11.054-10.461l.001-.025c.15-5.932-4.53-10.866-10.462-11.029zm5.842 8.302h2.4c.976 0 .682-.873.682-.873a9.587 9.587 0 0 0-2.111-3.431l-.005.011a10.052 10.052 0 0 0-3.355-2.329.612.612 0 0 0-.894.622c-.044.802-.142 2.395-.142 2.395s.016.769-.627.769c-.813.011-1.489-.044-1.489-.044a2.314 2.314 0 0 1-1.255-.545L8.868 3.511a1.09 1.09 0 0 0-1.407-.196 9.758 9.758 0 0 0-4.713 5.384c-.256.714.333.806.731.806h6a2.086 2.086 0 0 1 1.68.627c.785.824 1.331 1.369 1.331 1.369s.48.54 1.26 1.358c.431.459.632 1.089.545 1.713 0 0-.295 5.744-.295 6-.027.398.038.993.769.775a9.756 9.756 0 0 0 5.618-4.424 1.091 1.091 0 0 0-.12-1.418l-2.471-2.607a2.303 2.303 0 0 1-.496-1.282s-.022-.682.033-1.489c.044-.643.802-.583.802-.583zm-2.362 1.374c-.475.469-1.484.229-2.22-.545-.736-.775-.924-1.801-.45-2.254.475-.453 1.502-.239 2.239.536.737.774.906 1.794.431 2.263z"/></svg>
+                Nuke
+            </div>
+            <div class="skill-chip">
+                <svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm.016 22.762H12c-5.95-.009-10.765-4.84-10.756-10.789.009-5.95 4.839-10.766 10.789-10.757 5.943.009 10.756 4.829 10.756 10.773 0 5.95-4.823 10.773-10.773 10.773zm9.475-10.857a5.562 5.562 0 0 1-9.142 3.214 6.331 6.331 0 0 0 3.251-2.062l.104.169c.339.584.568 1.226.676 1.893a6.281 6.281 0 0 0-.349-2.656 6.328 6.328 0 0 0-8.94-8.63 5.563 5.563 0 0 1 7.418 6.256 6.334 6.334 0 0 0-3.425-1.762l.093-.175a5.53 5.53 0 0 1 1.304-1.533 6.31 6.31 0 0 0-2.122 1.636 6.327 6.327 0 0 0-3.016 12.044 5.564 5.564 0 0 1 1.713-9.562 6.33 6.33 0 0 0 .185 3.818h-.186a5.535 5.535 0 0 1-1.98-.36 6.295 6.295 0 0 0 2.471 1.025 6.328 6.328 0 0 0 8.513 2.758 6.319 6.319 0 0 0 3.432-6.073zm-11.018-1.443a5.582 5.582 0 0 1 3.6.998 5.584 5.584 0 0 1-2.667 2.618 5.57 5.57 0 0 1-.933-3.616z"/></svg>
+                Katana
+            </div>
+            <div class="skill-chip">
+                <svg viewBox="0 0 24 24"><path d="M17.621 0 5.977.004c-1.37 0-2.756.345-3.762 1.11a4.925 4.925 0 0 0-1.61 2.003C.233 3.93 0 5.02 0 5.951l.012 12.2c.002 1.604.479 3.057 1.461 4.112.984 1.056 2.462 1.683 4.331 1.691L16.856 24c1.26.005 3.095-.036 4.303-.714 1.075-.605 2.025-1.556 2.497-2.984.278-.84.345-2.084.344-3.147l-.021-11.13c-.002-.888-.15-2.023-.547-2.934-.425-.976-1.181-1.815-2.322-2.425C20.353.26 19.123 0 17.622 0zm0 .93c1.378 0 2.538.295 3.04.565.977.523 1.544 1.166 1.889 1.96.315.721.47 1.793.473 2.572l.018 11.13c.002 1.013-.097 2.257-.298 2.86-.396 1.202-1.146 1.946-2.063 2.462-.814.457-2.612.593-3.82.588l-11.05-.044c-1.657-.007-2.832-.534-3.626-1.386-.792-.851-1.212-2.06-1.212-3.485L.999 5.95c0-.829.196-1.827.474-2.437.345-.757.75-1.207 1.365-1.674C3.585 1.27 4.868.97 6.08.97zm-5.66 3.423c-1.976.089-3.204 1.658-3.214 3.29.019 1.443 1.635 3.481 2.884 4.53.12.099.154.109.33.18.062.025.198-.047.327-.135.36-.245.993-.947 1.648-1.738a7.67 7.67 0 0 0 1.031-1.683c.409-.89.261-1.599.235-1.888a3.983 3.983 0 0 0-.99-1.692 3.36 3.36 0 0 0-2.251-.864zm4.172 7.922a10.185 10.185 0 0 0-3.244.61c-.15.058-.26.1-.374.17-.057.036-.11.135-.105.292.017.433.29 1.278.624 2.27.384 1.135 1.066 2.27 1.844 2.74a3.23 3.23 0 0 0 2.53.342c.832-.243 1.595-.868 1.962-1.546.986-1.818.19-3.548-1.121-4.417-.447-.296-1.133-.445-1.89-.46-.074 0-.15-.002-.226-.001zm-8.432.038a6.201 6.201 0 0 0-.752.047c-.596.078-.932.273-1.29.51a3.177 3.177 0 0 0-1.365 1.979c-.075.552-.086 1.053.033 1.507.433 1.389 1.326 2.222 2.847 2.452.636.028 1.37-.063 1.99-.45 1.269-.782 2.08-3.17 2.412-4.742.053-.176.035-.357-.013-.42-.005-.067-.044-.113-.19-.183-.398-.192-1.32-.417-2.375-.6a7.68 7.68 0 0 0-1.297-.1z"/></svg>
+                DaVinci
+            </div>
+            <div class="skill-chip">
+                <svg viewBox="0 0 24 24"><path d="M13.966 22.624l-1.69-4.281H8.122l3.892-9.144 5.662 13.425zM12.153 0l-6.706 16.62h4.964l.968-2.544h5.53l.96 2.544h4.974L12.153 0zm1.285 11.99l2.22 5.558H11.2l2.238-5.558z"/></svg>
+                Adobe
+            </div>
+        </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section class="section">
+        <h2 class="section-title">Education</h2>
+        <div class="education-card">
+            <h3 class="education-degree">MA In Digital Effects</h3>
+            <p class="education-school">Bournemouth University</p>
+            <p class="education-year">Sep 2017 – Sep 2018</p>
+            <p class="education-desc">Chevening scholarship, distinction</p>
+        </div>
+        <div class="education-card">
+            <h3 class="education-degree">BSc In Computer Science</h3>
+            <p class="education-school">Notre Dame University</p>
+            <p class="education-year">Sep 2006 – Jun 2010</p>
+            <p class="education-desc">Graphics & animation concentration</p>
+        </div>
+    </section>
+
+    <!-- LANGUAGES -->
+    <section class="section">
+        <h2 class="section-title">Languages</h2>
+        <div class="languages-row">
+            <span class="language-chip">Arabic <span>/ Native</span></span>
+            <span class="language-chip">English <span>/ Fluent</span></span>
+            <span class="language-chip">French <span>/ Conversational</span></span>
+        </div>
+    </section>
+
+    <!-- INTERESTS -->
+    <section class="section">
+        <h2 class="section-title">Interests</h2>
+        <div class="interests-row">
+            <span class="interest-chip">Music</span>
+            <span class="interest-chip">Technology</span>
+            <span class="interest-chip">Culinary Arts</span>
+            <span class="interest-chip">Videography</span>
+            <span class="interest-chip">Comics</span>
+            <span class="interest-chip">Coffee</span>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p class="footer-text">Rany Bechara</p>
+    </footer>
+</body>
+</html>
