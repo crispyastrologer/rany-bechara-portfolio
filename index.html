@@ -108,6 +108,14 @@
             color: #0F1113;
         }
         
+        .light svg {
+            stroke: #0F1113 !important;
+        }
+        
+        .blueprint-dinosaur {
+            color: inherit;
+        }
+        
         .light .side-panel-muted {
             color: #71717A;
         }
@@ -156,9 +164,14 @@
             transform: translateX(0);
         }
         
+        .light .video-panel.open {
+            background-color: transparent;
+            border: none;
+        }
+        
         .light .video-panel {
-            background-color: #ffffff;
-            border-right-color: rgba(0,0,0,0.1);
+            background-color: transparent;
+            border: none;
         }
         
         /* Sticky Navigation */
@@ -241,6 +254,47 @@
             <div class="absolute inset-0 z-0 opacity-30 pointer-events-none">
                 <div class="absolute inset-0 blueprint-grid"></div>
                 <div class="absolute inset-0 wireframe-overlay"></div>
+            </div>
+            
+<!-- Blueprint Geometric SVG -->
+            <div class="absolute inset-0 z-0 pointer-events-none" style="opacity: 0.03;">
+                <svg viewBox="0 0 400 400" class="w-[150%] h-[150%] -ml-[25%] -mt-[25%]" fill="none" stroke="currentColor">
+                    <!-- Background squares grid - doubled -->
+                    <rect x="20" y="20" width="360" height="360" stroke-width="0.8"/>
+                    <rect x="40" y="40" width="320" height="320" stroke-width="0.8"/>
+                    <rect x="60" y="60" width="280" height="280" stroke-width="0.8"/>
+                    <rect x="80" y="80" width="240" height="240" stroke-width="0.8"/>
+                    <rect x="100" y="100" width="200" height="200" stroke-width="0.8"/>
+                    <rect x="120" y="120" width="160" height="160" stroke-width="0.8"/>
+                    
+                    <!-- Center circles - doubled -->
+                    <circle cx="200" cy="200" r="100" stroke-width="0.8"/>
+                    <circle cx="200" cy="200" r="70" stroke-width="0.8"/>
+                    <circle cx="200" cy="200" r="40" stroke-width="0.8"/>
+                    
+                    <!-- Cross lines -->
+                    <line x1="200" y1="20" x2="200" y2="380" stroke-width="0.8"/>
+                    <line x1="20" y1="200" x2="380" y2="200" stroke-width="0.8"/>
+                    
+                    <!-- Diagonal lines -->
+                    <line x1="80" y1="80" x2="320" y2="320" stroke-width="0.5"/>
+                    <line x1="320" y1="80" x2="80" y2="320" stroke-width="0.5"/>
+                    
+                    <!-- Corner circles - doubled -->
+                    <circle cx="80" cy="80" r="15" stroke-width="0.8"/>
+                    <circle cx="320" cy="80" r="15" stroke-width="0.8"/>
+                    <circle cx="80" cy="320" r="15" stroke-width="0.8"/>
+                    <circle cx="320" cy="320" r="15" stroke-width="0.8"/>
+                    
+                    <!-- Quarter circles - doubled -->
+                    <path d="M20 200 A180 180 0 0 1 200 20" stroke-width="0.8"/>
+                    <path d="M200 20 A180 180 0 0 1 380 200" stroke-width="0.8"/>
+                    <path d="M380 200 A180 180 0 0 1 200 380" stroke-width="0.8"/>
+                    <path d="M200 380 A180 180 0 0 1 20 200" stroke-width="0.8"/>
+                    
+                    <!-- Inner diamond -->
+                    <rect x="140" y="140" width="120" height="120" transform="rotate(45 200 200)" stroke-width="0.8"/>
+                </svg>
             </div>
             
             <div class="relative z-10 h-full flex flex-col p-10 lg:p-14 justify-between">
