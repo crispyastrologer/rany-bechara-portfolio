@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Rany Bechara - Creature Simulation Artist</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        charcoal: "#0F1113",
+                        blueprint: "#1A1D21",
+                        "technical-blue": "#2A2E35",
+                        accent: "#FFFFFF",
+                        muted: "#71717A"
+                    }
+                }
+            }
+        };
+    </script>
+    <style type="text/tailwindcss">
+        @layer base {
+            body {
+                @apply bg-charcoal text-white font-sans antialiased selection:bg-white selection:text-charcoal transition-colors duration-500;
+            }
+            .light body {
+                @apply bg-[#F4F4F5] text-charcoal;
+            }
+        }
+        
+        .cal-sans {
+            font-family: 'Inter', sans-serif;
+            font-weight: 800;
+            letter-spacing: -0.05em;
+            line-height: 0.9;
+        }
+        
+        .vertical-text {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+        }
+        
+        .blueprint-grid {
+            background-size: 40px 40px;
+            background-image: 
+                linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px);
+        }
+        
+        .light .blueprint-grid {
+            background-image: 
+                linear-gradient(to right, rgba(0,0,0,0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(0,0,0,0.05) 1px, transparent 1px);
+        }
+        
+        .wireframe-overlay {
+            background: linear-gradient(45deg, transparent 48%, rgba(255,255,255,0.1) 49%, rgba(255,255,255,0.1) 51%, transparent 52%);
+            background-size: 20px 20px;
+        }
+        
+        @media (min-width: 1024px) {
+            .fixed-side-panel {
+                width: 42%;
+                position: fixed;
+                height: 100vh;
+                left: 0;
+                top: 0;
+            }
+            .scroll-content {
+                margin-left: 42%;
+                width: 58%;
+            }
+        }
+        
+        .switch-input:checked + .switch-label {
+            @apply bg-white;
+        }
+        .switch-input:checked + .switch-label .switch-dot {
+            @apply translate-x-6 bg-charcoal;
+        }
+        .light .switch-label {
+            @apply bg-charcoal;
+        }
+        .light .switch-dot {
+            @apply bg-white;
+        }
+        
+        .text-muted-theme {
+            @apply text-zinc-400;
+        }
+        .light .text-muted-theme {
+            @apply text-zinc-600;
+        }
+        
+        .light .fixed-side-panel {
+            background-color: #ffffff;
+            border-right-color: rgba(0,0,0,0.08);
+        }
+        
+        .light .side-panel-text {
+            color: #111;
+        }
+        
+        .light .side-panel-muted {
+            color: #71717A;
+        }
+        
+        .light .side-panel-border {
+            border-color: rgba(0,0,0,0.08);
+        }
+        
+        .light .side-panel-bg-5 {
+            background-color: rgba(0,0,0,0.04);
+        }
+        
+        .light .watch-reel-hover:hover {
+            background-color: #111;
+            color: #fff;
+        }
+        
+        .light .light-wireframe {
+            opacity: 0.1;
+            background: linear-gradient(45deg, transparent 48%, rgba(0,0,0,0.1) 49%, rgba(0,0,0,0.1) 51%, transparent 52%);
+            background-size: 20px 20px;
+        }
+        
+        .light body {
+            @apply bg-[#F4F4F5] text-[#111];
+        }
+        
+        .light .border-white\/5 {
+            border-color: rgba(0,0,0,0.08);
+        }
+        
+        .light .border-white\/10 {
+            border-color: rgba(0,0,0,0.1);
+        }
+        
+        .light .border-white\/20 {
+            border-color: rgba(0,0,0,0.15);
+        }
+        
+        .light .text-white\/5 {
+            color: rgba(0,0,0,0.05);
+        }
+        
+        .light .text-white\/10 {
+            color: rgba(0,0,0,0.08);
+        }
+        
+        .light .text-white\/20 {
+            color: rgba(0,0,0,0.15);
+        }
+        
+        .light .text-white\/30 {
+            color: rgba(0,0,0,0.25);
+        }
+        
+        .light .bg-white\/5 {
+            background-color: rgba(0,0,0,0.04);
+        }
+        
+        .light .bg-white\/10 {
+            background-color: rgba(0,0,0,0.08);
+        }
+        
+        .light nav.border-b,
+        .light footer.border-t {
+            border-color: rgba(0,0,0,0.08);
+        }
+        
+        .light .hover\:border-white\/20:hover {
+            border-color: rgba(0,0,0,0.15);
+        }
+        
+        .light .scroll-content {
+            color: #111;
+        }
+        
+/* Video Panel Animation */
+        .video-panel {
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-out;
+            top: 30%;
+        }
+        
+        .video-panel.open {
+            transform: translateX(0);
+        }
+        
+        .light .video-panel {
+            background-color: #ffffff;
+            border-right-color: rgba(0,0,0,0.1);
+        }
+        
+        /* Software icons - light mode */
+        .light .p-6 svg {
+            color: #111;
+        }
+        
+        /* Sticky Navigation */
+        .sticky-nav {
+            position: sticky;
+            top: 0;
+            z-index: 40;
+            background-color: #0F1113;
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+        
+        .light .sticky-nav {
+            background-color: #F4F4F5;
+        }
+    </style>
+</head>
+<body class="dark">
+    
+    <!-- THEME TOGGLE -->
+    <div class="fixed top-8 right-8 z-[100] flex items-center gap-3">
+        <span class="text-[10px] font-bold tracking-widest uppercase opacity-40">Theme</span>
+        <label class="relative inline-flex items-center cursor-pointer">
+            <input class="sr-only peer switch-input" type="checkbox" value="" id="themeSwitch" onchange="document.documentElement.classList.toggle('dark'); document.documentElement.classList.toggle('light')">
+            <div class="w-12 h-6 bg-white/10 rounded-full transition-all duration-300 switch-label p-1">
+                <div class="w-4 h-4 bg-white rounded-full transition-all duration-300 switch-dot"></div>
+            </div>
+        </label>
+    </div>
+
+    <div class="flex flex-col lg:flex-row min-h-screen">
+        
+        <!-- LEFT PANEL (Fixed) -->
+        <aside class="fixed-side-panel bg-blueprint border-r border-white/10 z-50 overflow-hidden transition-colors duration-500 side-panel-border">
+            
+            <!-- Wireframe Background -->
+            <div class="absolute inset-0 z-0 opacity-20 pointer-events-none">
+                <div class="absolute inset-0 wireframe-overlay light-wireframe"></div>
+            </div>
+            
+            <div class="relative z-10 h-full flex flex-col p-12 lg:p-16 justify-between">
+                
+                <!-- Top -->
+                <div>
+                    <div class="flex items-center gap-3 mb-12 opacity-60 side-panel-muted">
+                        <span class="w-8 h-[1px] bg-current side-panel-border"></span>
+                        <span class="text-xs uppercase tracking-[0.3em] font-bold side-panel-text">VFX</span>
+                    </div>
+                    
+                    <h1 class="cal-sans text-6xl lg:text-8xl uppercase mb-6 side-panel-text">
+                        Rany<br>Bechara
+                    </h1>
+                    
+                    <p class="text-muted-theme text-sm uppercase tracking-[0.2em] max-w-xs font-light">
+                        Creature Simulation Artist <span class="opacity-20 px-2">//</span> ILM, London
+                    </p>
+                </div>
+                
+                <!-- Watch Reel Button -->
+                <div class="group flex items-center gap-6 mt-12 cursor-pointer" onclick="toggleVideoPanel()">
+                    <div class="vertical-text uppercase tracking-[0.4em] text-xs font-bold py-4 border-l side-panel-border group-hover:border-current transition-colors side-panel-muted">
+                        Watch Reel 2025
+                    </div>
+                    <div class="w-12 h-12 rounded-full border side-panel-border flex items-center justify-center group-hover:bg-white group-hover:text-charcoal transition-all watch-reel-hover side-panel-text">
+                        <span class="material-symbols-outlined !text-xl">play_arrow</span>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <!-- Video Panel (Hidden by default) -->
+            <div id="videoPanel" class="video-panel absolute inset-0 z-20 flex flex-col" style="top: 30%; height: 70%;">
+                <div class="relative flex-1 p-4 lg:p-6">
+                    <!-- Close Button - positioned near video -->
+                    <button onclick="toggleVideoPanel()" class="absolute -top-2 right-2 z-30 w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-charcoal transition-all side-panel-text side-panel-border">
+                        <span class="material-symbols-outlined !text-lg">close</span>
+                    </button>
+                    <!-- Vimeo Embed - larger -->
+                    <div class="w-full h-full rounded-lg overflow-hidden">
+                        <iframe 
+                            src="https://player.vimeo.com/video/868736096?autoplay=1&muted=1&title=0&byline=0&portrait=0"
+                            class="w-full h-full"
+                            frameborder="0"
+                            allow="autoplay; fullscreen; picture-in-picture"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- RIGHT CONTENT (Scrollable) -->
+        <main class="scroll-content p-8 lg:p-16 space-y-24 min-h-screen">
+            
+            <!-- Navigation -->
+            <nav class="sticky-nav flex flex-wrap gap-8 text-xs font-bold uppercase tracking-[0.2em] text-muted-theme border-b border-white/5 dark:border-white/5 light:border-black/10">
+                <a href="#about" class="hover:text-white dark:hover:text-white light:hover:text-black transition-colors">About</a>
+                <a href="#experience" class="hover:text-white dark:hover:text-white light:hover:text-black transition-colors">Experience</a>
+                <a href="#skills" class="hover:text-white dark:hover:text-white light:hover:text-black transition-colors">Software</a>
+                <a href="#education" class="hover:text-white dark:hover:text-white light:hover:text-black transition-colors">Education</a>
+                <a href="#contact" class="hover:text-white dark:hover:text-white light:hover:text-black transition-colors">Contact</a>
+            </nav>
+
+            <!-- 00. About Section -->
+            <section id="about" class="max-w-3xl">
+                <header class="mb-16">
+                    <h2 class="text-xs font-bold tracking-[0.3em] uppercase opacity-40 mb-2 flex items-center gap-4">
+                        <span class="w-12 h-[1px] bg-current/20"></span> 00. About
+                    </h2>
+                </header>
+                <div class="space-y-6 text-base leading-relaxed font-light text-muted-theme">
+                    <p>I'm a 3D artist with over a decade of experience in computer graphics, spanning film, motion graphics, and digital media. My passion for digital content creation drives me to embrace cutting-edge tools and technology.</p>
+                    <p>I've contributed to diverse projects in the Middle East and the UK, including film, ads, music videos, holograms, VR applications, and research. My blend of artistic creativity and technical expertise brings innovation and adaptability to tech-driven environments.</p>
+                </div>
+            </section>
+
+            <!-- 01. Experience Section -->
+            <section id="experience" class="max-w-3xl">
+                <header class="mb-16">
+                    <h2 class="text-xs font-bold tracking-[0.3em] uppercase opacity-40 mb-2 flex items-center gap-4">
+                        <span class="w-12 h-[1px] bg-current/20"></span> 01. Work Experience
+                    </h2>
+                </header>
+                
+                <div class="space-y-24">
+                    
+                    <!-- ILM -->
+                    <article class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                        <div class="md:col-span-1">
+                            <span class="text-xs font-mono opacity-40 uppercase">2024 — NOW</span>
+                        </div>
+                        <div class="md:col-span-3">
+                            <h3 class="cal-sans text-3xl mb-1 uppercase">Creature Technical Director</h3>
+                            <p class="text-muted-theme text-sm font-medium mb-6">Industrial Light & Magic, London</p>
+                            <div class="space-y-3 text-sm leading-relaxed font-light">
+                                <p class="opacity-50 max-w-xl">Using Houdini and proprietary tools, create high quality simulations of muscles, skin, fur, and cloth.</p>
+                                <p class="opacity-50 max-w-xl">Collaborate with rigging, animation, and lighting teams to ensure seamless integration.</p>
+                                <p class="opacity-50 max-w-xl">Develop and share tools to streamline workflows and improve efficiency.</p>
+                            </div>
+                        </div>
+                    </article>
+                    
+                    <!-- MPC -->
+                    <article class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                        <div class="md:col-span-1">
+                            <span class="text-xs font-mono opacity-40 uppercase">2021 — 2023</span>
+                        </div>
+                        <div class="md:col-span-3">
+                            <h3 class="cal-sans text-3xl mb-1 uppercase opacity-80">Tech Anim Key Artist</h3>
+                            <p class="text-muted-theme text-sm font-medium mb-6 opacity-80">Moving Picture Company (MPC)</p>
+                            <div class="space-y-3 text-sm leading-relaxed font-light">
+                                <p class="opacity-40 max-w-xl">Part of multiple projects working on creature simulations for fur, feathers, skin and fat.</p>
+                                <p class="opacity-40 max-w-xl">Projects include <strong class="text-white font-medium">Prehistoric Planet</strong>, <strong class="text-white font-medium">Sonic</strong>, <strong class="text-white font-medium">Percy Jackson</strong>, <strong class="text-white font-medium">Halo</strong>, and <strong class="text-white font-medium">Disenchanted</strong>.</p>
+                            </div>
+                        </div>
+                    </article>
+                    
+                    <!-- University of Dundee -->
+                    <article class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                        <div class="md:col-span-1">
+                            <span class="text-xs font-mono opacity-40 uppercase">2020 — 2021</span>
+                        </div>
+                        <div class="md:col-span-3">
+                            <h3 class="cal-sans text-3xl mb-1 uppercase opacity-60">Research Assistant</h3>
+                            <p class="text-muted-theme text-sm font-medium mb-6 opacity-60">University of Dundee</p>
+                            <div class="space-y-3 text-sm leading-relaxed font-light">
+                                <p class="opacity-30 max-w-xl">Used state-of-the-art hardware to scan and reconstruct human faces.</p>
+                                <p class="opacity-30 max-w-xl">Recreate textures, hair systems and eye rigs using Blender.</p>
+                                <p class="opacity-30 max-w-xl">Scanned and modelled facial adornments such as jewellery and spectacles.</p>
+                            </div>
+                        </div>
+                    </article>
+                    
+                    <!-- Wellspring Learning Community -->
+                    <article class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                        <div class="md:col-span-1">
+                            <span class="text-xs font-mono opacity-40 uppercase">2019 — 2020</span>
+                        </div>
+                        <div class="md:col-span-3">
+                            <h3 class="cal-sans text-3xl mb-1 uppercase opacity-60">Digital Design Teacher</h3>
+                            <p class="text-muted-theme text-sm font-medium mb-6 opacity-60">Wellspring Learning Community</p>
+                            <div class="space-y-3 text-sm leading-relaxed font-light">
+                                <p class="opacity-30 max-w-xl">Created curriculum using the MYP program, including coding skills, Blender 3D and AR animations.</p>
+                            </div>
+                        </div>
+                    </article>
+                    
+                    <!-- Cre8mania -->
+                    <article class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                        <div class="md:col-span-1">
+                            <span class="text-xs font-mono opacity-40 uppercase">2015 — 2017</span>
+                        </div>
+                        <div class="md:col-span-3">
+                            <h3 class="cal-sans text-3xl mb-1 uppercase opacity-60">Digital Designer / Team Leader</h3>
+                            <p class="text-muted-theme text-sm font-medium mb-6 opacity-60">Cre8mania</p>
+                            <div class="space-y-3 text-sm leading-relaxed font-light">
+                                <p class="opacity-30 max-w-xl">Team leader and lead in developing the organisation's 3D department.</p>
+                                <p class="opacity-30 max-w-xl">Content creation in hologram animation, virtual reality, mobile gaming and 3D visualisation.</p>
+                            </div>
+                        </div>
+                    </article>
+                    
+                    <!-- Earlier Roles -->
+                    <article class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                        <div class="md:col-span-1">
+                            <span class="text-xs font-mono opacity-20 uppercase">2010 — 2015</span>
+                        </div>
+                        <div class="md:col-span-3 space-y-6">
+                            <div class="flex gap-4 items-baseline">
+                                <span class="text-white/20 text-[10px] font-mono uppercase">Spatial Thinking</span>
+                                <span class="text-muted-theme text-xs opacity-40">3D Generalist</span>
+                            </div>
+                            <div class="flex gap-4 items-baseline">
+                                <span class="text-white/20 text-[10px] font-mono uppercase">Feer Mcqueen</span>
+                                <span class="text-muted-theme text-xs opacity-40">Digital Artist</span>
+                            </div>
+                            <div class="flex gap-4 items-baseline">
+                                <span class="text-white/20 text-[10px] font-mono uppercase">W&P Productions</span>
+                                <span class="text-muted-theme text-xs opacity-40">Compositor</span>
+                            </div>
+                            <div class="flex gap-4 items-baseline">
+                                <span class="text-white/20 text-[10px] font-mono uppercase">Global Aim</span>
+                                <span class="text-muted-theme text-xs opacity-40">Animator</span>
+                            </div>
+                        </div>
+                    </article>
+                    
+                </div>
+            </section>
+
+            <!-- 02. Software Section -->
+            <section id="skills" class="max-w-3xl">
+                <header class="mb-16">
+                    <h2 class="text-xs font-bold tracking-[0.3em] uppercase opacity-40 mb-2 flex items-center gap-4">
+                        <span class="w-12 h-[1px] bg-current/20"></span> 02. Software
+                    </h2>
+                </header>
+                
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-8">
+                    <!-- Houdini - Official Simple Icons path -->
+                    <div class="p-6 border border-white/5 hover:border-white/20 transition-colors group">
+                        <div class="w-10 h-10 mb-4">
+                            <svg viewBox="0 0 24 24" class="w-full h-full opacity-60 group-hover:opacity-100 transition-opacity" fill="currentColor">
+                                <path d="M0 19.635V24h3.824A8.662 8.662 0 0 1 0 19.635zm16.042-4.555c0-4.037-3.253-7.92-8.111-8.089C4.483 6.873 1.801 8.136 0 10.005v4.209c1.224-3.549 4.595-5.158 7.419-5.128 3.531.041 6.251 2.703 6.275 5.72 0 2.878-1.183 4.992-4.436 5.516-1.774.296-4.548-.754-4.436-3.434.065-1.381 1.138-2.162 2.366-2.106-1.207 1.618.39 2.801 1.52 2.561a2.51 2.51 0 0 0 1.966-2.502c0-1.017-.958-2.662-3.333-2.6-2.936.068-4.785 2.183-4.85 4.797-.071 3.28 3.007 5.457 6.174 5.483 4.633.059 7.395-2.984 7.377-7.441zM0 0v6.906a12.855 12.855 0 0 1 7.931-2.609c6.801 0 11.134 4.762 11.131 10.765 0 4.17-1.946 7.308-4.995 8.938H24V0H0z"/>
+                            </svg>
+                        </div>
+                        <h4 class="text-lg mb-1">Houdini</h4>
+                        <span class="text-xs font-mono opacity-40 uppercase tracking-wider">Procedural Simulations</span>
+                    </div>
+                    
+                    <!-- Blender - Official Simple Icons path -->
+                    <div class="p-6 border border-white/5 hover:border-white/20 transition-colors group">
+                        <div class="w-10 h-10 mb-4">
+                            <svg viewBox="0 0 24 24" class="w-full h-full opacity-60 group-hover:opacity-100 transition-opacity" fill="currentColor">
+                                <path d="M12.51 13.214c.046-.8.438-1.506 1.03-2.006a3.424 3.424 0 0 1 2.212-.79c.85 0 1.631.3 2.211.79.592.5.983 1.206 1.028 2.005.045.823-.285 1.586-.865 2.153a3.389 3.389 0 0 1-2.374.938 3.393 3.393 0 0 1-2.376-.938c-.58-.567-.91-1.33-.865-2.152M7.35 14.831c.006.314.106.922.256 1.398a7.372 7.372 0 0 0 1.593 2.757 8.227 8.227 0 0 0 2.787 2.001 8.947 8.947 0 0 0 3.66.76 8.964 8.964 0 0 0 3.657-.772 8.285 8.285 0 0 0 2.785-2.01 7.428 7.428 0 0 0 1.592-2.762 6.964 6.964 0 0 0 .25-3.074 7.123 7.123 0 0 0-1.016-2.779 7.764 7.764 0 0 0-1.852-2.043h.002L13.566 2.55l-.02-.015c-.492-.378-1.319-.376-1.86.002-.547.382-.609 1.015-.123 1.415l-.001.001 3.126 2.543-9.53.01h-.013c-.788.001-1.545.518-1.695 1.172-.154.665.38 1.217 1.2 1.22V8.9l4.83-.01-8.62 6.617-.034.025c-.813.622-1.075 1.658-.563 2.313.52.667 1.625.668 2.447.004L7.414 14s-.069.52-.063.831zm12.09 1.741c-.97.988-2.326 1.548-3.795 1.55-1.47.004-2.827-.552-3.797-1.538a4.51 4.51 0 0 1-1.036-1.622 4.282 4.282 0 0 1 .282-3.519 4.702 4.702 0 0 1 1.153-1.371c.942-.768 2.141-1.183 3.396-1.185 1.256-.002 2.455.41 3.398 1.175.48.391.87.854 1.152 1.367a4.28 4.28 0 0 1 .522 1.706 4.236 4.236 0 0 1-.239 1.811 4.54 4.54 0 0 1-1.035 1.626"/>
+                            </svg>
+                        </div>
+                        <h4 class="text-lg mb-1">Blender</h4>
+                        <span class="text-xs font-mono opacity-40 uppercase tracking-wider">3D Modeling & Animation</span>
+                    </div>
+                    
+                    <!-- Nuke - Official Simple Icons path -->
+                    <div class="p-6 border border-white/5 hover:border-white/20 transition-colors group">
+                        <div class="w-10 h-10 mb-4">
+                            <svg viewBox="0 0 24 24" class="w-full h-full opacity-60 group-hover:opacity-100 transition-opacity" fill="currentColor">
+                                <path d="M12.293.004c6.625.162 11.865 5.664 11.703 12.29-.162 6.625-5.664 11.865-12.29 11.703C5.081 23.835-.159 18.333.003 11.707l.001-.025C.18 5.066 5.678-.158 12.293.004zm0 1.238c-5.941-.164-10.89 4.52-11.054 10.461s4.52 10.89 10.461 11.054c5.941.164 10.89-4.52 11.054-10.461l.001-.025c.15-5.932-4.53-10.866-10.462-11.029zm5.842 8.302h2.4c.976 0 .682-.873.682-.873a9.587 9.587 0 0 0-2.111-3.431l-.005.011a10.052 10.052 0 0 0-3.355-2.329.612.612 0 0 0-.894.622c-.044.802-.142 2.395-.142 2.395s.016.769-.627.769c-.813.011-1.489-.044-1.489-.044a2.314 2.314 0 0 1-1.255-.545L8.868 3.511a1.09 1.09 0 0 0-1.407-.196 9.758 9.758 0 0 0-4.713 5.384c-.256.714.333.806.731.806h6a2.086 2.086 0 0 1 1.68.627c.785.824 1.331 1.369 1.331 1.369s.48.54 1.26 1.358c.431.459.632 1.089.545 1.713 0 0-.295 5.744-.295 6-.027.398.038.993.769.775a9.756 9.756 0 0 0 5.618-4.424 1.091 1.091 0 0 0-.12-1.418l-2.471-2.607a2.303 2.303 0 0 1-.496-1.282s-.022-.682.033-1.489c.044-.643.802-.583.802-.583zm-2.362 1.374c-.475.469-1.484.229-2.22-.545-.736-.775-.924-1.801-.45-2.254.475-.453 1.502-.239 2.239.536.737.774.906 1.794.431 2.263z"/>
+                            </svg>
+                        </div>
+                        <h4 class="text-lg mb-1">Nuke</h4>
+                        <span class="text-xs font-mono opacity-40 uppercase tracking-wider">Compositing</span>
+                    </div>
+                    
+                    <!-- Katana - Official Simple Icons path -->
+                    <div class="p-6 border border-white/5 hover:border-white/20 transition-colors group">
+                        <div class="w-10 h-10 mb-4">
+                            <svg viewBox="0 0 24 24" class="w-full h-full opacity-60 group-hover:opacity-100 transition-opacity" fill="currentColor">
+                                <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm.016 22.762H12c-5.95-.009-10.765-4.84-10.756-10.789.009-5.95 4.839-10.766 10.789-10.757 5.943.009 10.756 4.829 10.756 10.773 0 5.95-4.823 10.773-10.773 10.773zm9.475-10.857a5.562 5.562 0 0 1-9.142 3.214 6.331 6.331 0 0 0 3.251-2.062l.104.169c.339.584.568 1.226.676 1.893a6.281 6.281 0 0 0-.349-2.656 6.328 6.328 0 0 0-8.94-8.63 5.563 5.563 0 0 1 7.418 6.256 6.334 6.334 0 0 0-3.425-1.762l.093-.175a5.53 5.53 0 0 1 1.304-1.533 6.31 6.31 0 0 0-2.122 1.636 6.327 6.327 0 0 0-3.016 12.044 5.564 5.564 0 0 1 1.713-9.562 6.33 6.33 0 0 0 .185 3.818h-.186a5.535 5.535 0 0 1-1.98-.36 6.295 6.295 0 0 0 2.471 1.025 6.328 6.328 0 0 0 8.513 2.758 6.319 6.319 0 0 0 3.432-6.073zm-11.018-1.443a5.582 5.582 0 0 1 3.6.998 5.584 5.584 0 0 1-2.667 2.618 5.57 5.57 0 0 1-.933-3.616z"/>
+                            </svg>
+                        </div>
+                        <h4 class="text-lg mb-1">Katana</h4>
+                        <span class="text-xs font-mono opacity-40 uppercase tracking-wider">Look Development</span>
+                    </div>
+                    
+                    <!-- DaVinci Resolve - Official Simple Icons path -->
+                    <div class="p-6 border border-white/5 hover:border-white/20 transition-colors group">
+                        <div class="w-10 h-10 mb-4">
+                            <svg viewBox="0 0 24 24" class="w-full h-full opacity-60 group-hover:opacity-100 transition-opacity" fill="currentColor">
+                                <path d="M17.621 0 5.977.004c-1.37 0-2.756.345-3.762 1.11a4.925 4.925 0 0 0-1.61 2.003C.233 3.93 0 5.02 0 5.951l.012 12.2c.002 1.604.479 3.057 1.461 4.112.984 1.056 2.462 1.683 4.331 1.691L16.856 24c1.26.005 3.095-.036 4.303-.714 1.075-.605 2.025-1.556 2.497-2.984.278-.84.345-2.084.344-3.147l-.021-11.13c-.002-.888-.15-2.023-.547-2.934-.425-.976-1.181-1.815-2.322-2.425C20.353.26 19.123 0 17.622 0zm0 .93c1.378 0 2.538.295 3.04.565.977.523 1.544 1.166 1.889 1.96.315.721.47 1.793.473 2.572l.018 11.13c.002 1.013-.097 2.257-.298 2.86-.396 1.202-1.146 1.946-2.063 2.462-.814.457-2.612.593-3.82.588l-11.05-.044c-1.657-.007-2.832-.534-3.626-1.386-.792-.851-1.212-2.06-1.212-3.485L.999 5.95c0-.829.196-1.827.474-2.437.345-.757.75-1.207 1.365-1.674C3.585 1.27 4.868.97 6.08.97zm-5.66 3.423c-1.976.089-3.204 1.658-3.214 3.29.019 1.443 1.635 3.481 2.884 4.53.12.099.154.109.33.18.062.025.198-.047.327-.135.36-.245.993-.947 1.648-1.738a7.67 7.67 0 0 0 1.031-1.683c.409-.89.261-1.599.235-1.888a3.983 3.983 0 0 0-.99-1.692 3.36 3.36 0 0 0-2.251-.864zm4.172 7.922a10.185 10.185 0 0 0-3.244.61c-.15.058-.26.1-.374.17-.057.036-.11.135-.105.292.017.433.29 1.278.624 2.27.384 1.135 1.066 2.27 1.844 2.74a3.23 3.23 0 0 0 2.53.342c.832-.243 1.595-.868 1.962-1.546.986-1.818.19-3.548-1.121-4.417-.447-.296-1.133-.445-1.89-.46-.074 0-.15-.002-.226-.001zm-8.432.038a6.201 6.201 0 0 0-.752.047c-.596.078-.932.273-1.29.51a3.177 3.177 0 0 0-1.365 1.979c-.075.552-.086 1.053.033 1.507.433 1.389 1.326 2.222 2.847 2.452.636.028 1.37-.063 1.99-.45 1.269-.782 2.08-3.17 2.412-4.742.053-.176.035-.357-.013-.42-.005-.067-.044-.113-.19-.183-.398-.192-1.32-.417-2.375-.6a7.68 7.68 0 0 0-1.297-.1z"/>
+                            </svg>
+                        </div>
+                        <h4 class="text-lg mb-1">DaVinci Resolve</h4>
+                        <span class="text-xs font-mono opacity-40 uppercase tracking-wider">Color Grading</span>
+                    </div>
+                    
+                    <!-- Adobe - Creative Cloud style -->
+                    <div class="p-6 border border-white/5 hover:border-white/20 transition-colors group">
+                        <div class="w-10 h-10 mb-4">
+                            <svg viewBox="0 0 24 24" class="w-full h-full opacity-60 group-hover:opacity-100 transition-opacity" fill="currentColor">
+                                <path d="M9.43 20.456l4.477-6.39L9.35 2.93l-.88 2.13H3.54l1.9 5.72h4.08l-1.4 4.04 3.31 5.67h-1.52l-2.5-3.97zm3.4-2.76l.75-2.17h1.14l-.73 2.17h-.56l-.6 1.8h-.56l.6-1.8zm7.67-8.35H14.5l-1.22 3.72h-.87L9.9 9.336H6.14l4.22 12.63h2.58l4.22-12.63h1.24zm-2.54 7.64l.78-2.36h.05l.78 2.36h-1.61z"/>
+                            </svg>
+                        </div>
+                        <h4 class="text-lg mb-1">Adobe Suite</h4>
+                        <span class="text-xs font-mono opacity-40 uppercase tracking-wider">Design & Animation</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 03. Education Section -->
+            <section id="education" class="max-w-3xl">
+                <header class="mb-16">
+                    <h2 class="text-xs font-bold tracking-[0.3em] uppercase opacity-40 mb-2 flex items-center gap-4">
+                        <span class="w-12 h-[1px] bg-current/20"></span> 03. Education
+                    </h2>
+                </header>
+                
+                <div class="space-y-12">
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                        <div class="md:col-span-1">
+                            <span class="text-[10px] font-mono opacity-40 uppercase">2017 — 2018</span>
+                        </div>
+                        <div class="md:col-span-3">
+                            <h3 class="cal-sans text-2xl mb-1 uppercase">MA Digital Effects</h3>
+                            <p class="text-muted-theme text-sm font-medium mb-4">Bournemouth University</p>
+                            <span class="inline-block text-[10px] font-mono uppercase tracking-wider bg-white/10 px-3 py-1 mb-3">Chevening Scholarship</span>
+                            <p class="text-sm text-muted-theme opacity-50">Distinction graduate with focus on digital compositing and visual effects.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                        <div class="md:col-span-1">
+                            <span class="text-[10px] font-mono opacity-20 uppercase">2006 — 2010</span>
+                        </div>
+                        <div class="md:col-span-3">
+                            <h3 class="cal-sans text-2xl mb-1 uppercase opacity-60">BSc Computer Science</h3>
+                            <p class="text-muted-theme text-sm font-medium mb-4 opacity-60">Notre Dame University</p>
+                            <span class="inline-block text-[10px] font-mono uppercase tracking-wider bg-white/5 px-3 py-1 mb-3 opacity-40">Graphics & Animation Concentration</span>
+                            <p class="text-sm text-muted-theme opacity-30">Foundation in computer graphics and animation principles.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 04. Languages Section -->
+            <section class="max-w-3xl">
+                <header class="mb-16">
+                    <h2 class="text-xs font-bold tracking-[0.3em] uppercase opacity-40 mb-2 flex items-center gap-4">
+                        <span class="w-12 h-[1px] bg-current/20"></span> 04. Languages
+                    </h2>
+                </header>
+                
+                <div class="flex flex-wrap gap-8">
+                    <div>
+                        <span class="text-sm font-medium">Arabic</span>
+                        <span class="text-muted-theme text-xs ml-2 opacity-40">Native</span>
+                    </div>
+                    <div>
+                        <span class="text-sm font-medium">English</span>
+                        <span class="text-muted-theme text-xs ml-2 opacity-40">Fluent</span>
+                    </div>
+                    <div>
+                        <span class="text-sm font-medium">French</span>
+                        <span class="text-muted-theme text-xs ml-2 opacity-40">Conversational</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 05. Contact Section -->
+            <section id="contact" class="max-w-3xl">
+                <header class="mb-16">
+                    <h2 class="text-xs font-bold tracking-[0.3em] uppercase opacity-40 mb-2 flex items-center gap-4">
+                        <span class="w-12 h-[1px] bg-current/20"></span> 05. Contact
+                    </h2>
+                </header>
+                
+                <div class="space-y-4">
+                    <a href="mailto:rany.bechara@gmail.com" class="flex items-center gap-4 text-muted-theme hover:text-white transition-colors">
+                        <span class="material-symbols-outlined text-lg">alternate_email</span>
+                        <span class="text-sm">rany.bechara@gmail.com</span>
+                    </a>
+                    <div class="flex items-center gap-4 text-muted-theme">
+                        <span class="material-symbols-outlined text-lg">phone</span>
+                        <span class="text-sm">+44 7960505341</span>
+                    </div>
+                    <div class="flex items-center gap-4 text-muted-theme">
+                        <span class="material-symbols-outlined text-lg">location_on</span>
+                        <span class="text-sm">London, UK</span>
+                    </div>
+                    <a href="http://www.rany.co/" class="flex items-center gap-4 text-muted-theme hover:text-white transition-colors">
+                        <span class="material-symbols-outlined text-lg">language</span>
+                        <span class="text-sm">www.rany.co</span>
+                    </a>
+                </div>
+                
+                <!-- Watch Reel CTA -->
+                <div class="mt-16 p-8 border border-white/10 bg-white/5">
+                    <p class="text-xs font-mono opacity-40 uppercase tracking-widest mb-4">Portfolio Reel</p>
+                    <button onclick="toggleVideoPanel()" class="inline-flex items-center gap-4 group cursor-pointer">
+                        <span class="cal-sans text-2xl uppercase">Watch My Work</span>
+                        <div class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-white group-hover:text-charcoal transition-all">
+                            <span class="material-symbols-outlined !text-xl">play_arrow</span>
+                        </div>
+                    </button>
+                    <p class="text-xs text-muted-theme mt-4 opacity-50">Compilation of recent VFX and simulation work.</p>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <footer class="pt-20 border-t border-white/5 flex flex-col md:flex-row justify-between text-xs font-mono uppercase tracking-widest text-muted-theme opacity-20 gap-4">
+                <p>© 2026 RANY BECHARA. ALL RIGHTS RESERVED.</p>
+                <div class="flex gap-8">
+                    <a href="mailto:rany.bechara@gmail.com" class="hover:text-white dark:hover:text-white light:hover:text-black transition-colors">Email</a>
+                    <a href="http://www.rany.co/" class="hover:text-white dark:hover:text-white light:hover:text-black transition-colors">Website</a>
+                </div>
+            </footer>
+
+        </main>
+    </div>
+
+    <script>
+        function toggleVideoPanel() {
+            const panel = document.getElementById('videoPanel');
+            panel.classList.toggle('open');
+        }
+    </script>
+
+</body>
+</html>

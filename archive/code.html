@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Julian Vermeer - Architectural Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        charcoal: "#0F1113",
+                        blueprint: "#1A1D21",
+                        "technical-blue": "#2A2E35",
+                        accent: "#FFFFFF",
+                        muted: "#71717A"
+                    },
+                    fontFamily: {
+                        headline: ["Inter", "sans-serif"],
+                        display: ["Inter", "sans-serif"],
+                        body: ["Inter", "sans-serif"]
+                    }
+                }
+            }
+        };
+    </script>
+<style type="text/tailwindcss">
+        @layer base {
+            body {
+                @apply bg-charcoal text-white font-body antialiased selection:bg-white selection:text-charcoal;
+            }
+        }
+        .cal-sans {
+            font-family: 'Inter', sans-serif;
+            font-weight: 800;
+            letter-spacing: -0.05em;
+            line-height: 0.9;
+        }
+        .vertical-text {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+        }
+        .blueprint-grid {
+            background-size: 40px 40px;
+            background-image: 
+                linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px);
+        }
+        .geometric-connector {
+            position: relative;
+        }
+        .geometric-connector::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: -20px;
+            width: 40px;
+            height: 1px;
+            background: rgba(255,255,255,0.2);
+        }
+        .wireframe-overlay {
+            background: linear-gradient(45deg, transparent 48%, rgba(255,255,255,0.1) 49%, rgba(255,255,255,0.1) 51%, transparent 52%);
+            background-size: 20px 20px;
+        }
+        @media (min-width: 1024px) {
+            .fixed-side-panel {
+                width: 40%;
+                position: fixed;
+                height: 100vh;
+                left: 0;
+                top: 0;
+            }
+            .scroll-content {
+                margin-left: 40%;
+                width: 60%;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="flex flex-col lg:flex-row">
+<aside class="fixed-side-panel bg-blueprint border-r border-white/10 z-50 overflow-hidden">
+<div class="absolute inset-0 z-0 opacity-20">
+<div class="absolute inset-0 wireframe-overlay"></div>
+<img alt="Architectural Wireframe Preview" class="w-full h-full object-cover grayscale brightness-50" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvzkm1g0VCzZEMwLFNodWmZc_h7HZtBfKwptXLf13oajn6UxqH9_W9UHdTDbREnwwvDot54Kq3EouoH4mLQWv0EBrLxBV4nRS7fMaQEZnzhEnGe40K8MxOHuxfmfJWyp72XL682PfxpR0P5ypL5iOf-j-b1eCnW5u8yqHIsE18MKheK92yz--Z3F6tbjT3w0ABUntTan6EuP9vdcAbuPCi8LE3DEgkdmxGqBD0sNx0oix23CqxfL2ApsquBCkL_hUfm1YEIMjTQyHa"/>
+<div class="absolute inset-0 bg-charcoal/40"></div>
+</div>
+<div class="relative z-10 h-full flex flex-col p-12 justify-between">
+<div>
+<div class="flex items-center gap-2 mb-12 opacity-60">
+<span class="w-8 h-[1px] bg-white"></span>
+<span class="text-[10px] uppercase tracking-[0.3em] font-bold">Project Index 01.A</span>
+</div>
+<h1 class="text-7xl lg:text-8xl cal-sans uppercase mb-6">
+                        Julian<br/>Vermeer
+                    </h1>
+<p class="text-muted text-sm uppercase tracking-[0.2em] max-w-xs font-light">
+                        Senior Architectural Technologist <span class="text-white/20 px-2">//</span> UI/UX System Designer
+                    </p>
+</div>
+<div class="flex items-end justify-between">
+<button class="group flex items-center gap-6">
+<div class="vertical-text uppercase tracking-[0.4em] text-[10px] font-bold py-4 border-l border-white/20 group-hover:border-white transition-colors">
+                            Watch Showreel 2024
+                        </div>
+<div class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-white group-hover:text-charcoal transition-all">
+<span class="material-symbols-outlined !text-xl">play_arrow</span>
+</div>
+</button>
+<div class="relative w-48 h-48 hidden xl:block">
+<div class="absolute inset-0 border border-white/5 blueprint-grid"></div>
+<div class="absolute top-[25%] left-0 w-full h-[1px] bg-white/10"></div>
+<div class="absolute top-[75%] left-0 w-full h-[1px] bg-white/10"></div>
+<div class="absolute left-[25%] top-0 h-full w-[1px] bg-white/10"></div>
+<div class="absolute left-[75%] top-0 h-full w-[1px] bg-white/10"></div>
+<div class="absolute top-[25%] left-[75%] group">
+<div class="w-2 h-2 bg-white -translate-x-1/2 -translate-y-1/2"></div>
+<div class="absolute left-4 top-0 -translate-y-1/2 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="text-[10px] bg-charcoal px-2 py-1 border border-white/20">@jvermeer</span>
+</div>
+</div>
+<div class="absolute top-[75%] left-[25%] group">
+<div class="w-2 h-2 bg-white -translate-x-1/2 -translate-y-1/2"></div>
+<div class="absolute left-4 top-0 -translate-y-1/2 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="text-[10px] bg-charcoal px-2 py-1 border border-white/20">info@julian.com</span>
+</div>
+</div>
+<div class="absolute bottom-2 right-2">
+<span class="text-[8px] text-white/30 font-mono italic">REF_SYS: 52.3676° N, 4.9041° E</span>
+</div>
+</div>
+</div>
+</div>
+</aside>
+<main class="scroll-content p-8 lg:p-20 space-y-32">
+<nav class="flex justify-between items-center mb-24 pb-8 border-b border-white/5">
+<div class="flex gap-12 text-[10px] font-bold uppercase tracking-[0.3em]">
+<a class="hover:text-muted transition-colors" href="#Experience">Experience</a>
+<a class="hover:text-muted transition-colors" href="#Education">Curriculum</a>
+<a class="hover:text-muted transition-colors" href="#Skills">Stack</a>
+</div>
+<button class="bg-white text-charcoal px-6 py-2 text-[10px] font-black uppercase tracking-widest hover:invert transition-all">
+                    Get Dossier.pdf
+                </button>
+</nav>
+<section class="max-w-3xl" id="Experience">
+<header class="mb-16">
+<h2 class="text-xs font-bold tracking-[0.4em] uppercase text-white/40 mb-2 flex items-center gap-4">
+<span class="w-12 h-[1px] bg-white/20"></span> 01. Prof. Records
+                    </h2>
+</header>
+<div class="space-y-24">
+<article class="grid grid-cols-1 md:grid-cols-4 gap-8">
+<div class="md:col-span-1">
+<span class="text-[10px] font-mono text-muted uppercase">2020 — Present</span>
+</div>
+<div class="md:col-span-3">
+<h3 class="cal-sans text-3xl mb-1 uppercase">Lead Design Architect</h3>
+<p class="text-white/40 text-sm font-medium mb-6">Stellar Build International</p>
+<ul class="space-y-4 text-muted text-sm leading-relaxed font-light">
+<li class="flex gap-4">
+<span class="text-white/20 font-mono mt-1">/01</span>
+<span>Spearheaded design of a $450M sustainable complex, optimizing thermal dynamics through bioclimatic modeling.</span>
+</li>
+<li class="flex gap-4">
+<span class="text-white/20 font-mono mt-1">/02</span>
+<span>Orchestrated firm-wide transition to computational BIM, reducing data silos and operational friction.</span>
+</li>
+</ul>
+</div>
+</article>
+<article class="grid grid-cols-1 md:grid-cols-4 gap-8">
+<div class="md:col-span-1">
+<span class="text-[10px] font-mono text-muted uppercase">2016 — 2020</span>
+</div>
+<div class="md:col-span-3">
+<h3 class="cal-sans text-3xl mb-1 uppercase">Senior Visual Designer</h3>
+<p class="text-white/40 text-sm font-medium mb-6">Studio Form &amp; Space</p>
+<ul class="space-y-4 text-muted text-sm leading-relaxed font-light">
+<li class="flex gap-4">
+<span class="text-white/20 font-mono mt-1">/01</span>
+<span>Led UI/UX overhaul of interactive spatial viewers, merging architectural data with real-time web rendering.</span>
+</li>
+</ul>
+</div>
+</article>
+</div>
+</section>
+<section class="max-w-3xl" id="Skills">
+<header class="mb-16">
+<h2 class="text-xs font-bold tracking-[0.4em] uppercase text-white/40 mb-2 flex items-center gap-4">
+<span class="w-12 h-[1px] bg-white/20"></span> 02. System Tech
+                    </h2>
+</header>
+<div class="grid grid-cols-2 md:grid-cols-3 gap-y-12 gap-x-8">
+<div>
+<p class="text-[10px] font-bold text-white/30 uppercase tracking-widest mb-4">Architecture</p>
+<ul class="text-sm space-y-2 text-muted">
+<li>Revit / BIM 360</li>
+<li>Rhino / Grasshopper</li>
+<li>AutoCAD Mastery</li>
+</ul>
+</div>
+<div>
+<p class="text-[10px] font-bold text-white/30 uppercase tracking-widest mb-4">Digital Design</p>
+<ul class="text-sm space-y-2 text-muted">
+<li>Figma Architecture</li>
+<li>Design Systems</li>
+<li>Motion Graphics</li>
+</ul>
+</div>
+<div>
+<p class="text-[10px] font-bold text-white/30 uppercase tracking-widest mb-4">Development</p>
+<ul class="text-sm space-y-2 text-muted">
+<li>Tailwind CSS</li>
+<li>Three.js Visuals</li>
+<li>React Components</li>
+</ul>
+</div>
+</div>
+</section>
+<section class="max-w-3xl" id="Education">
+<header class="mb-16">
+<h2 class="text-xs font-bold tracking-[0.4em] uppercase text-white/40 mb-2 flex items-center gap-4">
+<span class="w-12 h-[1px] bg-white/20"></span> 03. Academic
+                    </h2>
+</header>
+<div class="space-y-12">
+<div class="border-l border-white/10 pl-8 py-2 hover:border-white transition-colors group">
+<p class="text-[10px] font-mono text-muted mb-2">2014</p>
+<h4 class="cal-sans text-xl group-hover:tracking-wider transition-all uppercase">Master of Architecture</h4>
+<p class="text-white/40 text-xs">Delft University of Technology</p>
+</div>
+<div class="border-l border-white/10 pl-8 py-2 hover:border-white transition-colors group">
+<p class="text-[10px] font-mono text-muted mb-2">2012</p>
+<h4 class="cal-sans text-xl group-hover:tracking-wider transition-all uppercase">BSc Architectural Engineering</h4>
+<p class="text-white/40 text-xs">Eindhoven University of Technology</p>
+</div>
+</div>
+</section>
+<section class="max-w-3xl pt-20">
+<div class="relative p-1 bg-gradient-to-br from-white/20 to-transparent">
+<div class="bg-blueprint p-12 relative overflow-hidden">
+<div class="absolute top-0 right-0 p-4 font-mono text-[8px] text-white/20">MOD_404_V.2</div>
+<h3 class="text-3xl cal-sans uppercase mb-4 leading-none">Consultation &amp; Strategy</h3>
+<p class="text-muted text-sm mb-8 max-w-md">Integrating high-precision physical architecture with resilient digital infrastructures.</p>
+<a class="inline-flex items-center gap-3 text-[10px] font-black uppercase tracking-widest border-b-2 border-white pb-1 hover:text-white/60 transition-colors" href="mailto:hello@julianvermeer.com">
+                            Initiate Protocol
+                            <span class="material-symbols-outlined !text-sm">arrow_forward</span>
+</a>
+</div>
+</div>
+</section>
+<footer class="pt-20 border-t border-white/5 flex flex-col md:flex-row justify-between text-[10px] font-mono text-white/20 uppercase tracking-widest gap-4">
+<p>© VERMEER_COORD_2024</p>
+<div class="flex gap-8">
+<a class="hover:text-white transition-colors" href="#">LinkedIn</a>
+<a class="hover:text-white transition-colors" href="#">Source</a>
+<a class="hover:text-white transition-colors" href="#">Manifesto</a>
+</div>
+</footer>
+</main>
+</div>
+
+</body></html>

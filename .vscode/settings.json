@@ -1,0 +1,5 @@
+{
+    "liveServer.settings.CustomBrowser": "C:\\\\Program Files\\\\BraveSoftware\\\\Brave-Browser\\\\Application\\\\brave.exe",
+    "liveServer.settings.AdvanceCustomBrowserCmdOption": "--remote-debugging-port=9222",
+    "workbench.externalBrowser": "C:\\Program Files\\BraveSoftware\\Brave-Browser\\Application\\brave.exe"
+}
