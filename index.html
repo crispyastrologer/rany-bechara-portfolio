@@ -192,6 +192,41 @@
             transform: translateX(0);
         }
         
+        /* Mobile: Nav at top */
+        @media (max-width: 1024px) {
+            .sticky-nav {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                z-index: 999;
+            }
+            
+            .scroll-content {
+                padding-top: 60px;
+            }
+            
+            /* Mobile video slides from left, no dark background */
+            .video-panel {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                transform: translateX(-100%);
+                z-index: 1000;
+                background-color: transparent;
+            }
+            
+            .video-panel.open {
+                transform: translateX(0);
+            }
+            
+            .video-panel .video-content {
+                padding: 16px;
+            }
+        }
+        
         .light .video-panel.open {
             background-color: transparent;
             border: none;
@@ -372,11 +407,11 @@
             
             <!-- Video Panel (Hidden by default) -->
             <div id="videoPanel" class="video-panel absolute inset-0 z-20 flex flex-col" style="top: 20%; height: 80%;">
-                <div class="relative flex-1 p-4 lg:p-6">
+                <div class="relative flex-1 p-4 lg:p-6 video-content">
                     <!-- Vimeo Embed -->
                     <div class="w-full h-full rounded-lg overflow-hidden shadow-2xl relative">
                         <!-- Close Button -->
-                        <button onclick="toggleVideoPanel()" class="absolute top-3 right-3 z-30 w-8 h-8 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center hover:bg-white hover:text-charcoal transition-all shadow-lg">
+                        <button onclick="toggleVideoPanel()" class="absolute top-2 right-2 z-30 w-8 h-8 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center hover:bg-white hover:text-charcoal transition-all shadow-lg">
                             <span class="material-symbols-outlined !text-sm text-charcoal">close</span>
                         </button>
                         <iframe 
@@ -395,22 +430,24 @@
         <main class="scroll-content p-8 lg:p-14 space-y-20 min-h-screen">
             
             <!-- Navigation -->
-            <nav class="sticky-nav flex flex-wrap items-center gap-6 lg:gap-10 text-[13px] font-mono-tech font-medium uppercase tracking-[0.15em] border-b border-white/5 pb-5 -mx-8 px-8 lg:-mx-14 lg:px-14">
-                <a href="#about" class="text-slate-400 hover:text-white transition-colors">About</a>
-                <a href="#experience" class="text-slate-400 hover:text-white transition-colors">Experience</a>
-                <a href="#skills" class="text-slate-400 hover:text-white transition-colors">Software</a>
-                <a href="#education" class="text-slate-400 hover:text-white transition-colors">Education</a>
-                <a href="#contact" class="text-slate-400 hover:text-white transition-colors">Contact</a>
-                
-                <!-- Theme Toggle in Nav -->
-                <div class="ml-auto flex items-center gap-2">
-                    <span class="text-[12px] text-white/30 uppercase tracking-wider">Theme</span>
+            <nav class="sticky-nav flex flex-wrap items-center justify-between gap-4 lg:gap-10 text-[13px] font-mono-tech font-medium uppercase tracking-[0.15em] border-b border-white/5 pb-4 lg:pb-5 px-4 lg:px-0">
+                <!-- Theme Toggle -->
+                <div class="flex items-center gap-2">
+                    <span class="text-[12px] text-white/30 uppercase tracking-wider hidden lg:inline">Theme</span>
                     <label class="relative inline-flex items-center cursor-pointer">
                         <input class="sr-only peer switch-input" type="checkbox" id="themeSwitch" onchange="document.documentElement.classList.toggle('dark'); document.documentElement.classList.toggle('light')">
                         <div class="w-11 h-5.5 bg-white/10 rounded-full transition-all duration-300 switch-label p-0.5">
                             <div class="w-5 h-5 bg-white rounded-full transition-all duration-300 switch-dot"></div>
                         </div>
                     </label>
+                </div>
+                <!-- Nav Links -->
+                <div class="flex flex-wrap gap-3 lg:gap-10">
+                    <a href="#about" class="text-slate-400 hover:text-white transition-colors">About</a>
+                    <a href="#experience" class="text-slate-400 hover:text-white transition-colors">Experience</a>
+                    <a href="#skills" class="text-slate-400 hover:text-white transition-colors">Software</a>
+                    <a href="#education" class="text-slate-400 hover:text-white transition-colors">Education</a>
+                    <a href="#contact" class="text-slate-400 hover:text-white transition-colors">Contact</a>
                 </div>
             </nav>
 
