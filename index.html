@@ -61,13 +61,17 @@
         
         .light .blueprint-grid {
             background-image: 
-                linear-gradient(to right, rgba(0,0,0,0.03) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(0,0,0,0.03) 1px, transparent 1px);
+                linear-gradient(to right, rgba(0,0,0,0.015) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(0,0,0,0.015) 1px, transparent 1px);
         }
         
         .wireframe-overlay {
             background: linear-gradient(45deg, transparent 48%, rgba(255,255,255,0.06) 49%, rgba(255,255,255,0.06) 51%, transparent 52%);
             background-size: 20px 20px;
+        }
+        
+        .light .wireframe-overlay {
+            background: linear-gradient(45deg, transparent 48%, rgba(0,0,0,0.04) 49%, rgba(0,0,0,0.04) 51%, transparent 52%);
         }
         
         @media (min-width: 1024px) {
@@ -100,8 +104,8 @@
         
         /* Light Mode Panel */
         .light .fixed-side-panel {
-            background-color: #E8E8EA;
-            border-right-color: rgba(0,0,0,0.1);
+            background-color: #F5F5F7;
+            border-right-color: rgba(0,0,0,0.08);
         }
         
         .light .side-panel-text {
@@ -141,8 +145,32 @@
             color: rgba(0,0,0,0.2);
         }
         
+        .light .text-white\/25 {
+            color: rgba(0,0,0,0.25);
+        }
+        
         .light .text-white\/30 {
             color: rgba(0,0,0,0.3);
+        }
+        
+        .light .text-white\/40 {
+            color: rgba(0,0,0,0.4);
+        }
+        
+        .light .text-white\/50 {
+            color: rgba(0,0,0,0.5);
+        }
+        
+        .light .text-white\/60 {
+            color: rgba(0,0,0,0.6);
+        }
+        
+        .light .text-white\/70 {
+            color: rgba(0,0,0,0.7);
+        }
+        
+        .light .text-white\/80 {
+            color: rgba(0,0,0,0.8);
         }
         
         .light .bg-white\/5 {
@@ -172,6 +200,36 @@
         .light .video-panel {
             background-color: transparent;
             border: none;
+        }
+        
+        /* Light Mode Grid Elements */
+        .light .grid-elements .grid-border {
+            border-color: rgba(0,0,0,0.04);
+        }
+        .light .grid-elements .grid-line {
+            background-color: rgba(0,0,0,0.06);
+        }
+        .light .grid-elements .dot {
+            background-color: rgba(0,0,0,0.15);
+        }
+        .light .grid-elements .grid-tooltip {
+            background-color: rgba(255,255,255,0.95);
+            border-color: rgba(0,0,0,0.08);
+            color: #0F1113;
+        }
+        .light .grid-elements .grid-coord {
+            color: rgba(0,0,0,0.2);
+        }
+        
+        /* Light Mode Wireframe Background */
+        .light .wireframe-bg {
+            opacity: 0.05;
+        }
+        .light .wireframe-bg img {
+            filter: grayscale(100%) brightness(60%);
+        }
+        .light .wireframe-bg .bg-charcoal\/40 {
+            background-color: rgba(0,0,0,0.05);
         }
         
         /* Sticky Navigation */
@@ -251,50 +309,11 @@
         <aside class="fixed-side-panel bg-blueprint border-r border-white/10 z-50 overflow-hidden transition-colors duration-300 side-panel-border">
             
             <!-- Wireframe Background -->
-            <div class="absolute inset-0 z-0 opacity-30 pointer-events-none">
+            <div class="absolute inset-0 z-0 opacity-20 pointer-events-none wireframe-bg">
                 <div class="absolute inset-0 blueprint-grid"></div>
                 <div class="absolute inset-0 wireframe-overlay"></div>
-            </div>
-            
-<!-- Blueprint Geometric SVG -->
-            <div class="absolute inset-0 z-0 pointer-events-none" style="opacity: 0.03;">
-                <svg viewBox="0 0 400 400" class="w-[150%] h-[150%] -ml-[25%] -mt-[25%]" fill="none" stroke="currentColor">
-                    <!-- Background squares grid - doubled -->
-                    <rect x="20" y="20" width="360" height="360" stroke-width="0.8"/>
-                    <rect x="40" y="40" width="320" height="320" stroke-width="0.8"/>
-                    <rect x="60" y="60" width="280" height="280" stroke-width="0.8"/>
-                    <rect x="80" y="80" width="240" height="240" stroke-width="0.8"/>
-                    <rect x="100" y="100" width="200" height="200" stroke-width="0.8"/>
-                    <rect x="120" y="120" width="160" height="160" stroke-width="0.8"/>
-                    
-                    <!-- Center circles - doubled -->
-                    <circle cx="200" cy="200" r="100" stroke-width="0.8"/>
-                    <circle cx="200" cy="200" r="70" stroke-width="0.8"/>
-                    <circle cx="200" cy="200" r="40" stroke-width="0.8"/>
-                    
-                    <!-- Cross lines -->
-                    <line x1="200" y1="20" x2="200" y2="380" stroke-width="0.8"/>
-                    <line x1="20" y1="200" x2="380" y2="200" stroke-width="0.8"/>
-                    
-                    <!-- Diagonal lines -->
-                    <line x1="80" y1="80" x2="320" y2="320" stroke-width="0.5"/>
-                    <line x1="320" y1="80" x2="80" y2="320" stroke-width="0.5"/>
-                    
-                    <!-- Corner circles - doubled -->
-                    <circle cx="80" cy="80" r="15" stroke-width="0.8"/>
-                    <circle cx="320" cy="80" r="15" stroke-width="0.8"/>
-                    <circle cx="80" cy="320" r="15" stroke-width="0.8"/>
-                    <circle cx="320" cy="320" r="15" stroke-width="0.8"/>
-                    
-                    <!-- Quarter circles - doubled -->
-                    <path d="M20 200 A180 180 0 0 1 200 20" stroke-width="0.8"/>
-                    <path d="M200 20 A180 180 0 0 1 380 200" stroke-width="0.8"/>
-                    <path d="M380 200 A180 180 0 0 1 200 380" stroke-width="0.8"/>
-                    <path d="M200 380 A180 180 0 0 1 20 200" stroke-width="0.8"/>
-                    
-                    <!-- Inner diamond -->
-                    <rect x="140" y="140" width="120" height="120" transform="rotate(45 200 200)" stroke-width="0.8"/>
-                </svg>
+                <img alt="Wireframe Preview" class="w-full h-full object-cover grayscale brightness-50" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvzkm1g0VCzZEMwLFNodWmZc_h7HZtBfKwptXLf13oajn6UxqH9_W9UHdTDbREnwwvDot54Kq3EouoH4mLQWv0EBrLxBV4nRS7fMaQEZnzhEnGe40K8MxOHuxfmfJWyp72XL682PfxpR0P5ypL5iOf-j-b1eCnW5u8yqHIsE18MKheK92yz--Z3F6tbjT3w0ABUntTan6EuP9vdcAbuPCi8LE3DEgkdmxGqBD0sNx0oix23CqxfL2ApsquBCkL_hUfm1YEIMjTQyHa"/>
+                <div class="absolute inset-0 bg-charcoal/40"></div>
             </div>
             
             <div class="relative z-10 h-full flex flex-col p-10 lg:p-14 justify-between">
@@ -303,7 +322,7 @@
                 <div>
                     <div class="flex items-center gap-3 mb-10 opacity-60 side-panel-muted">
                         <span class="w-6 h-[1px] bg-current side-panel-border"></span>
-                        <span class="text-[10px] uppercase tracking-[0.25em] font-mono-tech font-medium side-panel-text">VFX UNIT 04.L</span>
+                        <span class="text-[12px] uppercase tracking-[0.25em] font-mono-tech font-medium side-panel-text">VFX</span>
                     </div>
                     
                     <h1 class="font-display text-5xl lg:text-7xl uppercase mb-5 side-panel-text">
@@ -317,11 +336,35 @@
                 
                 <!-- Watch Reel Button -->
                 <div class="group flex items-center gap-5 mt-8 cursor-pointer" onclick="toggleVideoPanel()">
-                    <div class="vertical-text uppercase tracking-[0.35em] text-[10px] font-mono-tech font-medium py-4 border-l-2 border-white/20 group-hover:border-white/40 transition-colors side-panel-muted">
+                    <div class="vertical-text uppercase tracking-[0.35em] text-[12px] font-mono-tech font-medium py-4 border-l-2 border-white/20 group-hover:border-white/40 transition-colors side-panel-muted">
                         Watch Reel 2025
                     </div>
                     <div class="w-11 h-11 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-white group-hover:text-charcoal transition-all side-panel-text side-panel-border">
                         <span class="material-symbols-outlined !text-lg">play_arrow</span>
+                    </div>
+                </div>
+                
+                <!-- Grid Elements with Dots -->
+                <div class="relative w-40 h-40 hidden lg:block mt-4 grid-elements">
+                    <div class="absolute inset-0 border border-white/5 blueprint-grid grid-border"></div>
+                    <div class="absolute top-[25%] left-0 w-full h-[1px] bg-white/10 grid-line"></div>
+                    <div class="absolute top-[75%] left-0 w-full h-[1px] bg-white/10 grid-line"></div>
+                    <div class="absolute left-[25%] top-0 h-full w-[1px] bg-white/10 grid-line"></div>
+                    <div class="absolute left-[75%] top-0 h-full w-[1px] bg-white/10 grid-line"></div>
+                    <div class="absolute top-[25%] left-[75%] group">
+                        <div class="w-2 h-2 bg-white dot"></div>
+                        <div class="absolute left-4 top-0 -translate-y-1/2 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">
+                            <span class="text-[12px] bg-charcoal px-2 py-1 border border-white/20 grid-tooltip">@ranybechara</span>
+                        </div>
+                    </div>
+                    <div class="absolute top-[75%] left-[25%] group">
+                        <div class="w-2 h-2 bg-white dot"></div>
+                        <div class="absolute left-4 top-0 -translate-y-1/2 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">
+                            <span class="text-[12px] bg-charcoal px-2 py-1 border border-white/20 grid-tooltip">ranybechara.com</span>
+                        </div>
+                    </div>
+                    <div class="absolute bottom-2 right-2">
+                        <span class="text-[8px] text-white/30 font-mono italic grid-coord">SYS: 51.5074° N</span>
                     </div>
                 </div>
                 
@@ -330,13 +373,12 @@
             <!-- Video Panel (Hidden by default) -->
             <div id="videoPanel" class="video-panel absolute inset-0 z-20 flex flex-col" style="top: 20%; height: 80%;">
                 <div class="relative flex-1 p-4 lg:p-6">
-                    <!-- Close Button -->
-                    <button onclick="toggleVideoPanel()" class="absolute -top-12 right-0 z-30 flex items-center gap-2 px-4 py-2 rounded-full border border-white/20 hover:bg-white hover:text-charcoal transition-all text-xs font-mono-tech uppercase tracking-wider side-panel-text side-panel-border">
-                        <span class="material-symbols-outlined !text-sm">close</span>
-                        <span>Close</span>
-                    </button>
                     <!-- Vimeo Embed -->
-                    <div class="w-full h-full rounded-lg overflow-hidden shadow-2xl">
+                    <div class="w-full h-full rounded-lg overflow-hidden shadow-2xl relative">
+                        <!-- Close Button -->
+                        <button onclick="toggleVideoPanel()" class="absolute top-3 right-3 z-30 w-8 h-8 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center hover:bg-white hover:text-charcoal transition-all shadow-lg">
+                            <span class="material-symbols-outlined !text-sm text-charcoal">close</span>
+                        </button>
                         <iframe 
                             src="https://player.vimeo.com/video/868736096?autoplay=1&muted=1&title=0&byline=0&portrait=0"
                             class="w-full h-full"
@@ -353,8 +395,7 @@
         <main class="scroll-content p-8 lg:p-14 space-y-20 min-h-screen">
             
             <!-- Navigation -->
-            <nav class="sticky-nav flex flex-wrap items-center gap-6 lg:gap-10 text-[11px] font-mono-tech font-medium uppercase tracking-[0.15em] border-b border-white/5 pb-5 -mx-8 px-8 lg:-mx-14 lg:px-14">
-                <span class="text-white/40 text-[9px]">NAV</span>
+            <nav class="sticky-nav flex flex-wrap items-center gap-6 lg:gap-10 text-[13px] font-mono-tech font-medium uppercase tracking-[0.15em] border-b border-white/5 pb-5 -mx-8 px-8 lg:-mx-14 lg:px-14">
                 <a href="#about" class="text-slate-400 hover:text-white transition-colors">About</a>
                 <a href="#experience" class="text-slate-400 hover:text-white transition-colors">Experience</a>
                 <a href="#skills" class="text-slate-400 hover:text-white transition-colors">Software</a>
@@ -363,7 +404,7 @@
                 
                 <!-- Theme Toggle in Nav -->
                 <div class="ml-auto flex items-center gap-2">
-                    <span class="text-[9px] text-white/30 uppercase tracking-wider">Theme</span>
+                    <span class="text-[12px] text-white/30 uppercase tracking-wider">Theme</span>
                     <label class="relative inline-flex items-center cursor-pointer">
                         <input class="sr-only peer switch-input" type="checkbox" id="themeSwitch" onchange="document.documentElement.classList.toggle('dark'); document.documentElement.classList.toggle('light')">
                         <div class="w-11 h-5.5 bg-white/10 rounded-full transition-all duration-300 switch-label p-0.5">
@@ -376,7 +417,7 @@
             <!-- 00. About Section -->
             <section id="about" class="max-w-2xl">
                 <header class="mb-10">
-                    <h2 class="text-[10px] font-mono-tech font-semibold tracking-[0.3em] uppercase text-white/50 mb-3 flex items-center gap-4">
+                    <h2 class="text-[12px] font-mono-tech font-semibold tracking-[0.3em] uppercase text-white/50 mb-3 flex items-center gap-4">
                         <span class="w-8 h-[1px] bg-white/20"></span> 00. About
                     </h2>
                 </header>
@@ -392,7 +433,7 @@
             <!-- 01. Experience Section -->
             <section id="experience" class="max-w-2xl">
                 <header class="mb-10">
-                    <h2 class="text-[10px] font-mono-tech font-semibold tracking-[0.3em] uppercase text-white/50 mb-3 flex items-center gap-4">
+                    <h2 class="text-[12px] font-mono-tech font-semibold tracking-[0.3em] uppercase text-white/50 mb-3 flex items-center gap-4">
                         <span class="w-8 h-[1px] bg-white/20"></span> 01. Work Experience
                     </h2>
                 </header>
@@ -402,7 +443,7 @@
                     <!-- ILM -->
                     <article class="grid grid-cols-1 md:grid-cols-12 gap-6">
                         <div class="md:col-span-3">
-                            <span class="text-[10px] font-mono-tech text-white/60 uppercase tracking-wider">2024 — Present</span>
+                            <span class="text-[12px] font-mono-tech text-white/60 uppercase tracking-wider">2024 — Present</span>
                         </div>
                         <div class="md:col-span-9">
                             <h3 class="font-display text-2xl lg:text-3xl uppercase mb-1">Creature Technical Director</h3>
@@ -418,7 +459,7 @@
                     <!-- MPC -->
                     <article class="grid grid-cols-1 md:grid-cols-12 gap-6">
                         <div class="md:col-span-3">
-                            <span class="text-[10px] font-mono-tech text-white/40 uppercase tracking-wider">2021 — 2023</span>
+                            <span class="text-[12px] font-mono-tech text-white/40 uppercase tracking-wider">2021 — 2023</span>
                         </div>
                         <div class="md:col-span-9">
                             <h3 class="font-display text-2xl lg:text-3xl uppercase mb-1 text-white/80">Tech Anim Key Artist</h3>
@@ -433,7 +474,7 @@
                     <!-- University of Dundee -->
                     <article class="grid grid-cols-1 md:grid-cols-12 gap-6">
                         <div class="md:col-span-3">
-                            <span class="text-[10px] font-mono-tech text-white/30 uppercase tracking-wider">2020 — 2021</span>
+                            <span class="text-[12px] font-mono-tech text-white/30 uppercase tracking-wider">2020 — 2021</span>
                         </div>
                         <div class="md:col-span-9">
                             <h3 class="font-display text-2xl lg:text-3xl uppercase mb-1 text-white/60">Research Assistant</h3>
@@ -449,7 +490,7 @@
                     <!-- Wellspring Learning Community -->
                     <article class="grid grid-cols-1 md:grid-cols-12 gap-6">
                         <div class="md:col-span-3">
-                            <span class="text-[10px] font-mono-tech text-white/25 uppercase tracking-wider">2019 — 2020</span>
+                            <span class="text-[12px] font-mono-tech text-white/25 uppercase tracking-wider">2019 — 2020</span>
                         </div>
                         <div class="md:col-span-9">
                             <h3 class="font-display text-2xl lg:text-3xl uppercase mb-1 text-white/50">Digital Design Teacher</h3>
@@ -463,7 +504,7 @@
                     <!-- Cre8mania -->
                     <article class="grid grid-cols-1 md:grid-cols-12 gap-6">
                         <div class="md:col-span-3">
-                            <span class="text-[10px] font-mono-tech text-white/20 uppercase tracking-wider">2015 — 2017</span>
+                            <span class="text-[12px] font-mono-tech text-white/20 uppercase tracking-wider">2015 — 2017</span>
                         </div>
                         <div class="md:col-span-9">
                             <h3 class="font-display text-2xl lg:text-3xl uppercase mb-1 text-white/50">Digital Designer / Team Leader</h3>
@@ -478,23 +519,23 @@
                     <!-- Earlier Roles -->
                     <article class="grid grid-cols-1 md:grid-cols-12 gap-6">
                         <div class="md:col-span-3">
-                            <span class="text-[10px] font-mono-tech text-white/15 uppercase tracking-wider">2010 — 2015</span>
+                            <span class="text-[12px] font-mono-tech text-white/15 uppercase tracking-wider">2010 — 2015</span>
                         </div>
                         <div class="md:col-span-9 space-y-4">
                             <div class="flex gap-4 items-baseline">
-                                <span class="text-[10px] font-mono-tech text-white/20 uppercase w-32">Spatial Thinking</span>
+                                <span class="text-[12px] font-mono-tech text-white/20 uppercase w-32">Spatial Thinking</span>
                                 <span class="text-xs text-slate-500/50">3D Generalist</span>
                             </div>
                             <div class="flex gap-4 items-baseline">
-                                <span class="text-[10px] font-mono-tech text-white/20 uppercase w-32">Feer Mcqueen</span>
+                                <span class="text-[12px] font-mono-tech text-white/20 uppercase w-32">Feer Mcqueen</span>
                                 <span class="text-xs text-slate-500/50">Digital Artist</span>
                             </div>
                             <div class="flex gap-4 items-baseline">
-                                <span class="text-[10px] font-mono-tech text-white/20 uppercase w-32">W&P Productions</span>
+                                <span class="text-[12px] font-mono-tech text-white/20 uppercase w-32">W&P Productions</span>
                                 <span class="text-xs text-slate-500/50">Compositor</span>
                             </div>
                             <div class="flex gap-4 items-baseline">
-                                <span class="text-[10px] font-mono-tech text-white/20 uppercase w-32">Global Aim</span>
+                                <span class="text-[12px] font-mono-tech text-white/20 uppercase w-32">Global Aim</span>
                                 <span class="text-xs text-slate-500/50">Animator</span>
                             </div>
                         </div>
@@ -509,7 +550,7 @@
             <!-- 02. Software Section -->
             <section id="skills" class="max-w-2xl">
                 <header class="mb-10">
-                    <h2 class="text-[10px] font-mono-tech font-semibold tracking-[0.3em] uppercase text-white/50 mb-3 flex items-center gap-4">
+                    <h2 class="text-[12px] font-mono-tech font-semibold tracking-[0.3em] uppercase text-white/50 mb-3 flex items-center gap-4">
                         <span class="w-8 h-[1px] bg-white/20"></span> 02. Software & Tools
                     </h2>
                 </header>
@@ -523,7 +564,7 @@
                             </svg>
                         </div>
                         <h4 class="text-sm font-medium mb-1">Houdini</h4>
-                        <span class="text-[10px] font-mono-tech text-white/40 uppercase tracking-wider">Procedural Simulations</span>
+                        <span class="text-[12px] font-mono-tech text-white/40 uppercase tracking-wider">Procedural Simulations</span>
                     </div>
                     
                     <!-- Blender -->
@@ -534,7 +575,7 @@
                             </svg>
                         </div>
                         <h4 class="text-sm font-medium mb-1">Blender</h4>
-                        <span class="text-[10px] font-mono-tech text-white/40 uppercase tracking-wider">3D Modeling & Animation</span>
+                        <span class="text-[12px] font-mono-tech text-white/40 uppercase tracking-wider">3D Modeling & Animation</span>
                     </div>
                     
                     <!-- Nuke -->
@@ -545,7 +586,7 @@
                             </svg>
                         </div>
                         <h4 class="text-sm font-medium mb-1">Nuke</h4>
-                        <span class="text-[10px] font-mono-tech text-white/40 uppercase tracking-wider">Compositing</span>
+                        <span class="text-[12px] font-mono-tech text-white/40 uppercase tracking-wider">Compositing</span>
                     </div>
                     
                     <!-- Katana -->
@@ -556,7 +597,7 @@
                             </svg>
                         </div>
                         <h4 class="text-sm font-medium mb-1">Katana</h4>
-                        <span class="text-[10px] font-mono-tech text-white/40 uppercase tracking-wider">Look Development</span>
+                        <span class="text-[12px] font-mono-tech text-white/40 uppercase tracking-wider">Look Development</span>
                     </div>
                     
                     <!-- DaVinci Resolve -->
@@ -567,7 +608,7 @@
                             </svg>
                         </div>
                         <h4 class="text-sm font-medium mb-1">DaVinci Resolve</h4>
-                        <span class="text-[10px] font-mono-tech text-white/40 uppercase tracking-wider">Color Grading</span>
+                        <span class="text-[12px] font-mono-tech text-white/40 uppercase tracking-wider">Color Grading</span>
                     </div>
                     
                     <!-- Adobe Suite -->
@@ -578,7 +619,7 @@
                             </svg>
                         </div>
                         <h4 class="text-sm font-medium mb-1">Adobe Suite</h4>
-                        <span class="text-[10px] font-mono-tech text-white/40 uppercase tracking-wider">Design & Animation</span>
+                        <span class="text-[12px] font-mono-tech text-white/40 uppercase tracking-wider">Design & Animation</span>
                     </div>
                 </div>
             </section>
@@ -589,7 +630,7 @@
             <!-- 03. Education Section -->
             <section id="education" class="max-w-2xl">
                 <header class="mb-10">
-                    <h2 class="text-[10px] font-mono-tech font-semibold tracking-[0.3em] uppercase text-white/50 mb-3 flex items-center gap-4">
+                    <h2 class="text-[12px] font-mono-tech font-semibold tracking-[0.3em] uppercase text-white/50 mb-3 flex items-center gap-4">
                         <span class="w-8 h-[1px] bg-white/20"></span> 03. Education
                     </h2>
                 </header>
@@ -597,7 +638,7 @@
                 <div class="space-y-10">
                     <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
                         <div class="md:col-span-3">
-                            <span class="text-[10px] font-mono-tech text-white/50 uppercase tracking-wider">2017 — 2018</span>
+                            <span class="text-[12px] font-mono-tech text-white/50 uppercase tracking-wider">2017 — 2018</span>
                         </div>
                         <div class="md:col-span-9">
                             <h3 class="font-display text-xl uppercase mb-1">MA Digital Effects</h3>
@@ -609,7 +650,7 @@
                     
                     <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
                         <div class="md:col-span-3">
-                            <span class="text-[10px] font-mono-tech text-white/30 uppercase tracking-wider">2006 — 2010</span>
+                            <span class="text-[12px] font-mono-tech text-white/30 uppercase tracking-wider">2006 — 2010</span>
                         </div>
                         <div class="md:col-span-9">
                             <h3 class="font-display text-xl uppercase mb-1 text-white/60">BSc Computer Science</h3>
@@ -627,7 +668,7 @@
             <!-- 04. Languages Section -->
             <section class="max-w-2xl">
                 <header class="mb-10">
-                    <h2 class="text-[10px] font-mono-tech font-semibold tracking-[0.3em] uppercase text-white/50 mb-3 flex items-center gap-4">
+                    <h2 class="text-[12px] font-mono-tech font-semibold tracking-[0.3em] uppercase text-white/50 mb-3 flex items-center gap-4">
                         <span class="w-8 h-[1px] bg-white/20"></span> 04. Languages
                     </h2>
                 </header>
@@ -635,15 +676,15 @@
                 <div class="flex flex-wrap gap-8">
                     <div class="flex items-center gap-3">
                         <span class="text-sm font-medium">Arabic</span>
-                        <span class="text-[10px] font-mono-tech text-white/40 uppercase tracking-wider ml-2">Native</span>
+                        <span class="text-[12px] font-mono-tech text-white/40 uppercase tracking-wider ml-2">Native</span>
                     </div>
                     <div class="flex items-center gap-3">
                         <span class="text-sm font-medium">English</span>
-                        <span class="text-[10px] font-mono-tech text-white/40 uppercase tracking-wider ml-2">Fluent</span>
+                        <span class="text-[12px] font-mono-tech text-white/40 uppercase tracking-wider ml-2">Fluent</span>
                     </div>
                     <div class="flex items-center gap-3">
                         <span class="text-sm font-medium">French</span>
-                        <span class="text-[10px] font-mono-tech text-white/40 uppercase tracking-wider ml-2">Conversational</span>
+                        <span class="text-[12px] font-mono-tech text-white/40 uppercase tracking-wider ml-2">Conversational</span>
                     </div>
                 </div>
             </section>
@@ -654,7 +695,7 @@
             <!-- 05. Contact Section -->
             <section id="contact" class="max-w-2xl">
                 <header class="mb-10">
-                    <h2 class="text-[10px] font-mono-tech font-semibold tracking-[0.3em] uppercase text-white/50 mb-3 flex items-center gap-4">
+                    <h2 class="text-[12px] font-mono-tech font-semibold tracking-[0.3em] uppercase text-white/50 mb-3 flex items-center gap-4">
                         <span class="w-8 h-[1px] bg-white/20"></span> 05. Contact
                     </h2>
                 </header>
@@ -680,7 +721,7 @@
                 
                 <!-- Watch Reel CTA -->
                 <div class="p-8 rounded-lg border border-white/10 bg-white/5">
-                    <p class="text-[10px] font-mono-tech uppercase tracking-widest text-white/40 mb-4">Portfolio Reel</p>
+                    <p class="text-[12px] font-mono-tech uppercase tracking-widest text-white/40 mb-4">Portfolio Reel</p>
                     <button onclick="toggleVideoPanel()" class="inline-flex items-center gap-4 group cursor-pointer">
                         <span class="font-display text-xl uppercase">Watch My Work</span>
                         <div class="w-11 h-11 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-white group-hover:text-charcoal transition-all">
@@ -692,7 +733,7 @@
             </section>
 
             <!-- Footer -->
-            <footer class="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between text-[10px] font-mono-tech uppercase tracking-widest text-white/30 gap-4">
+            <footer class="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between text-[12px] font-mono-tech uppercase tracking-widest text-white/30 gap-4">
                 <p>© 2026 Rany Bechara</p>
                 <div class="flex gap-6">
                     <a href="mailto:rany.bechara@gmail.com" class="hover:text-white transition-colors">Email</a>
