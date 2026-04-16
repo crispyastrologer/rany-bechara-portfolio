@@ -312,6 +312,106 @@
         .light .contact-link:hover {
             color: #0F1113;
         }
+        
+        /* Print Styles */
+        @media print {
+            body, .bg-charcoal, .light body { 
+                background: white !important; 
+                color: #555555 !important;
+            }
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            
+            /* Cal.com Print Typography & Color overrides */
+            .text-white, .side-panel-text, .text-white\/70, .text-white\/80 { color: #242424 !important; }
+            .text-white\/20, .text-white\/30, .text-white\/40, .text-white\/50, .text-white\/60, .text-slate-400, .text-slate-500, .side-panel-muted { color: #898989 !important; opacity: 1 !important; }
+            .bg-blueprint { background: transparent !important; }
+            .border-white\/5, .border-white\/10, .border-white\/20, .side-panel-border { border-color: #eaeaea !important; }
+            
+            html { font-size: 11px !important; }
+            
+            /* Display Hierarchy */
+            h1 { font-size: 32pt !important; line-height: 1 !important; color: #242424 !important; font-weight: 800 !important; letter-spacing: -0.04em !important; margin-bottom: 0.5rem !important; }
+            h2 { font-size: 10pt !important; color: #898989 !important; letter-spacing: 0.1em !important; margin-bottom: 1rem !important; text-transform: uppercase !important; border: none !important; }
+            h3 { font-size: 12pt !important; color: #242424 !important; font-weight: 700 !important; letter-spacing: -0.02em !important; margin-bottom: 0.25rem !important; }
+            
+            /* Body Text */
+            p, li, a { font-size: 9pt !important; line-height: 1.5 !important; font-weight: 400 !important; color: #555555 !important; }
+            .side-panel-muted { font-weight: 500 !important; outline: none !important; }
+            .text-sm.font-medium.text-slate-500 { color: #898989 !important; font-size: 9pt !important; font-weight: 400 !important; }
+            .print-contact-block { font-size: 9pt !important; line-height: 1.6 !important; color: #898989 !important; letter-spacing: 0 !important; margin-top: 2rem !important; }
+            
+            /* Print Layout (Cal.com Proportions) */
+            .flex-col.lg\:flex-row {
+                display: block !important;
+            }
+            .flex-col.lg\:flex-row::after {
+                content: "";
+                display: table;
+                clear: both;
+            }
+            .fixed-side-panel {
+                position: static !important;
+                float: left !important;
+                width: 30% !important;
+                height: auto !important;
+                padding: 0 !important;
+                border: none !important;
+            }
+            .scroll-content {
+                position: static !important;
+                float: right !important;
+                margin: 0 !important;
+                width: 70% !important;
+                padding: 0 0 0 2rem !important;
+            }
+            
+            /* Elegant Whitespace (Not Crammed) */
+            .min-h-screen { min-height: 0 !important; }
+            .space-y-20 > * + * { margin-top: 2rem !important; }
+            .space-y-14 > * + * { margin-top: 1.5rem !important; }
+            .space-y-10 > * + * { margin-top: 1rem !important; }
+            .space-y-5 > * + * { margin-top: 0.75rem !important; }
+            .space-y-4 > * + * { margin-top: 0.5rem !important; }
+            .gap-8 { gap: 1.5rem !important; }
+            .gap-6 { gap: 1rem !important; }
+            .gap-4 { gap: 0.75rem !important; }
+            .p-10, .lg\:p-14, .p-8 { padding: 0 !important; }
+            .mb-10 { margin-bottom: 1.5rem !important; }
+            .mb-5 { margin-bottom: 0.75rem !important; }
+            .mb-4, .mb-3 { margin-bottom: 0.5rem !important; }
+            .mt-8, .mt-4 { margin-top: 1rem !important; }
+            
+            /* Cal.com Elevated Cards */
+            .software-card { 
+                padding: 0.75rem !important; 
+                border-radius: 8px !important;
+                border: none !important;
+                display: flex !important; 
+                flex-direction: column !important; 
+                align-items: flex-start !important; 
+                gap: 0.25rem !important;
+                box-shadow: rgba(34, 42, 53, 0.08) 0px 0px 0px 1px, rgba(34, 42, 53, 0.05) 0px 4px 8px 0px !important;
+            }
+            .software-card .w-8.h-8 { width: 16px !important; height: 16px !important; margin-bottom: 0.25rem !important; }
+            .software-card h4 { font-size: 9.5pt !important; color: #242424 !important; font-weight: 600 !important; margin: 0 !important; }
+            .software-card span { font-size: 8pt !important; color: #898989 !important; letter-spacing: 0 !important; display: block !important; text-transform: none !important; font-family: 'Inter', sans-serif !important; }
+            .grid-cols-2, .md\:grid-cols-3 { grid-template-columns: repeat(3, 1fr) !important; gap: 1.25rem !important; }
+            
+            /* Print Formatting Rules */
+            @page { margin: 1.25cm; }
+            section { margin-bottom: 1.5rem !important; page-break-inside: auto !important; }
+            article, .software-card { page-break-inside: avoid !important; }
+            h1, h2, h3, h4, h5, h6 { page-break-after: avoid; }
+            
+            /* Hide Interactive or Web-only Elements */
+            .wireframe-bg, .grid-elements, .sticky-nav, footer, .section-divider,
+            #videoPanel, .print-hidden, #contact {
+                display: none !important;
+            }
+        }
     </style>
 </head>
 <body class="dark">
@@ -345,10 +445,18 @@
                     <p class="text-sm uppercase tracking-[0.15em] max-w-xs font-light side-panel-muted leading-relaxed">
                         Creature Simulation Artist <span class="opacity-30 px-2">/</span> ILM London
                     </p>
+                    
+                    <!-- Print Contact Detail -->
+                    <div class="hidden print-contact-block mt-4 text-[9pt] font-mono-tech leading-relaxed text-[#333]">
+                        rany.bechara@gmail.com<br>
+                        +44 7960505341<br>
+                        London, UK<br>
+                        www.rany.co
+                    </div>
                 </div>
                 
                 <!-- Watch Reel Button & Video Panel -->
-                <div class="flex items-center w-full mt-8">
+                <div class="flex items-center w-full mt-8 print-hidden">
                     <!-- Button -->
                     <div class="group flex items-center gap-5 cursor-pointer shrink-0" onclick="toggleVideoPanel()">
                         <div class="vertical-text uppercase tracking-[0.35em] text-[12px] font-mono-tech font-medium py-4 border-l-2 border-white/20 group-hover:border-white/40 transition-colors side-panel-muted">
@@ -420,12 +528,17 @@
                     </label>
                 </div>
                 <!-- Nav Links -->
-                <div class="flex flex-wrap gap-3 lg:gap-10">
+                <div class="flex flex-wrap items-center gap-3 lg:gap-10">
                     <a href="#about" class="text-slate-400 hover:text-white transition-colors">About</a>
                     <a href="#experience" class="text-slate-400 hover:text-white transition-colors">Experience</a>
                     <a href="#skills" class="text-slate-400 hover:text-white transition-colors">Software</a>
                     <a href="#education" class="text-slate-400 hover:text-white transition-colors">Education</a>
                     <a href="#contact" class="text-slate-400 hover:text-white transition-colors">Contact</a>
+                    
+                    <!-- Print Button -->
+                    <button onclick="window.print()" class="text-[11px] font-mono-tech uppercase tracking-widest text-charcoal bg-white hover:bg-slate-200 px-4 py-2 rounded-sm transition-colors flex items-center justify-center gap-2 lg:ml-4 shadow-lg shadow-white/10 hover:shadow-white/20">
+                        <span class="material-symbols-outlined !text-sm leading-none">print</span> Print CV
+                    </button>
                 </div>
             </nav>
 
@@ -433,7 +546,7 @@
             <section id="about" class="max-w-2xl">
                 <header class="mb-10">
                     <h2 class="text-[12px] font-mono-tech font-semibold tracking-[0.3em] uppercase text-white/50 mb-3 flex items-center gap-4">
-                        <span class="w-8 h-[1px] bg-white/20"></span> 00. About
+                        <span class="w-8 h-[1px] bg-white/20"></span> About
                     </h2>
                 </header>
                 <div class="space-y-5 text-base leading-relaxed font-light text-slate-400">
@@ -449,7 +562,7 @@
             <section id="experience" class="max-w-2xl">
                 <header class="mb-10">
                     <h2 class="text-[12px] font-mono-tech font-semibold tracking-[0.3em] uppercase text-white/50 mb-3 flex items-center gap-4">
-                        <span class="w-8 h-[1px] bg-white/20"></span> 01. Work Experience
+                        <span class="w-8 h-[1px] bg-white/20"></span> Work Experience
                     </h2>
                 </header>
                 
@@ -566,7 +679,7 @@
             <section id="skills" class="max-w-2xl">
                 <header class="mb-10">
                     <h2 class="text-[12px] font-mono-tech font-semibold tracking-[0.3em] uppercase text-white/50 mb-3 flex items-center gap-4">
-                        <span class="w-8 h-[1px] bg-white/20"></span> 02. Software & Tools
+                        <span class="w-8 h-[1px] bg-white/20"></span> Software & Tools
                     </h2>
                 </header>
                 
@@ -646,7 +759,7 @@
             <section id="education" class="max-w-2xl">
                 <header class="mb-10">
                     <h2 class="text-[12px] font-mono-tech font-semibold tracking-[0.3em] uppercase text-white/50 mb-3 flex items-center gap-4">
-                        <span class="w-8 h-[1px] bg-white/20"></span> 03. Education
+                        <span class="w-8 h-[1px] bg-white/20"></span> Education
                     </h2>
                 </header>
                 
@@ -684,7 +797,7 @@
             <section class="max-w-2xl">
                 <header class="mb-10">
                     <h2 class="text-[12px] font-mono-tech font-semibold tracking-[0.3em] uppercase text-white/50 mb-3 flex items-center gap-4">
-                        <span class="w-8 h-[1px] bg-white/20"></span> 04. Languages
+                        <span class="w-8 h-[1px] bg-white/20"></span> Languages
                     </h2>
                 </header>
                 
@@ -711,7 +824,7 @@
             <section id="contact" class="max-w-2xl">
                 <header class="mb-10">
                     <h2 class="text-[12px] font-mono-tech font-semibold tracking-[0.3em] uppercase text-white/50 mb-3 flex items-center gap-4">
-                        <span class="w-8 h-[1px] bg-white/20"></span> 05. Contact
+                        <span class="w-8 h-[1px] bg-white/20"></span> Contact
                     </h2>
                 </header>
                 
@@ -735,7 +848,7 @@
                 </div>
                 
                 <!-- Watch Reel CTA -->
-                <div class="p-8 rounded-lg border border-white/10 bg-white/5">
+                <div class="p-8 rounded-lg border border-white/10 bg-white/5 print-hidden">
                     <p class="text-[12px] font-mono-tech uppercase tracking-widest text-white/40 mb-4">Portfolio Reel</p>
                     <button onclick="toggleVideoPanel()" class="inline-flex items-center gap-4 group cursor-pointer">
                         <span class="font-display text-xl uppercase">Watch My Work</span>
